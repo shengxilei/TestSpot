@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Created-By: IntelliJ IDEA
+Built-By: SXLMY
+Build-Jdk: 1.8.0_281
+Implementation-Title: spot
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: com.jianzhi
+Main-Class: ${start-class}
+

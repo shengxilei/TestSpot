@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jianzhi.mapper.SpotcheckMemberChangeMapper">
+  <resultMap id="BaseResultMap" type="com.jianzhi.model.SpotcheckMemberChange">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="xh" jdbcType="INTEGER" property="xh" />
+    <result column="dwm" jdbcType="VARCHAR" property="dwm" />
+    <result column="xm" jdbcType="VARCHAR" property="xm" />
+    <result column="xb" jdbcType="INTEGER" property="xb" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="jobtitle" jdbcType="VARCHAR" property="jobtitle" />
+    <result column="sfzhm" jdbcType="VARCHAR" property="sfzhm" />
+    <result column="kmm" jdbcType="VARCHAR" property="kmm" />
+    <result column="beforestatus" jdbcType="INTEGER" property="beforestatus" />
+    <result column="spid" jdbcType="INTEGER" property="spid" />
+    <result column="memid" jdbcType="INTEGER" property="memid" />
+    <result column="creatdate" jdbcType="TIMESTAMP" property="creatdate" />
+    <result column="afterstatus" jdbcType="INTEGER" property="afterstatus" />
+    <result column="bz" jdbcType="VARCHAR" property="bz" />
+    <result column="editor" jdbcType="VARCHAR" property="editor" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, xh, dwm, xm, xb, age, jobtitle, sfzhm, kmm, beforestatus, spid, creatdate, afterstatus, 
+    bz, memid, editor 
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pxbm_spotcheck_member_change
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from pxbm_spotcheck_member_change
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jianzhi.model.SpotcheckMemberChange">
+    insert into pxbm_spotcheck_member_change (id, xh, dwm, 
+      xm, xb, age, jobtitle, 
+      sfzhm, kmm, beforestatus, 
+      spid, afterstatus, 
+      bz,memid,editor)
+    values (#{id,jdbcType=INTEGER}, #{xh,jdbcType=INTEGER}, #{dwm,jdbcType=VARCHAR}, 
+      #{xm,jdbcType=VARCHAR}, #{xb,jdbcType=INTEGER}, #{age,jdbcType=INTEGER}, #{jobtitle,jdbcType=VARCHAR}, 
+      #{sfzhm,jdbcType=VARCHAR}, #{kmm,jdbcType=VARCHAR}, #{beforestatus,jdbcType=INTEGER}, 
+      #{spid,jdbcType=INTEGER}, #{afterstatus,jdbcType=INTEGER}, 
+      #{bz,jdbcType=VARCHAR},#{memid,jdbcType=INTEGER},#{editor,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jianzhi.model.SpotcheckMemberChange">
+    insert into pxbm_spotcheck_member_change
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="xh != null">
+        xh,
+      </if>
+      <if test="dwm != null">
+        dwm,
+      </if>
+      <if test="xm != null">
+        xm,
+      </if>
+      <if test="xb != null">
+        xb,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="jobtitle != null">
+        jobtitle,
+      </if>
+      <if test="sfzhm != null">
+        sfzhm,
+      </if>
+      <if test="kmm != null">
+        kmm,
+      </if>
+      <if test="beforestatus != null">
+        beforestatus,
+      </if>
+      <if test="spid != null">
+        spid,
+      </if>
+      <if test="creatdate != null">
+        creatdate,
+      </if>
+      <if test="afterstatus != null">
+        afterstatus,
+      </if>
+      <if test="bz != null">
+        bz,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="xh != null">
+        #{xh,jdbcType=INTEGER},
+      </if>
+      <if test="dwm != null">
+        #{dwm,jdbcType=VARCHAR},
+      </if>
+      <if test="xm != null">
+        #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="xb != null">
+        #{xb,jdbcType=INTEGER},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="jobtitle != null">
+        #{jobtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzhm != null">
+        #{sfzhm,jdbcType=VARCHAR},
+      </if>
+      <if test="kmm != null">
+        #{kmm,jdbcType=VARCHAR},
+      </if>
+      <if test="beforestatus != null">
+        #{beforestatus,jdbcType=INTEGER},
+      </if>
+      <if test="spid != null">
+        #{spid,jdbcType=INTEGER},
+      </if>
+      <if test="creatdate != null">
+        #{creatdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="afterstatus != null">
+        #{afterstatus,jdbcType=INTEGER},
+      </if>
+      <if test="bz != null">
+        #{bz,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jianzhi.model.SpotcheckMemberChange">
+    update pxbm_spotcheck_member_change
+    <set>
+      <if test="xh != null">
+        xh = #{xh,jdbcType=INTEGER},
+      </if>
+      <if test="dwm != null">
+        dwm = #{dwm,jdbcType=VARCHAR},
+      </if>
+      <if test="xm != null">
+        xm = #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="xb != null">
+        xb = #{xb,jdbcType=INTEGER},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="jobtitle != null">
+        jobtitle = #{jobtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzhm != null">
+        sfzhm = #{sfzhm,jdbcType=VARCHAR},
+      </if>
+      <if test="kmm != null">
+        kmm = #{kmm,jdbcType=VARCHAR},
+      </if>
+      <if test="beforestatus != null">
+        beforestatus = #{beforestatus,jdbcType=INTEGER},
+      </if>
+      <if test="spid != null">
+        spid = #{spid,jdbcType=INTEGER},
+      </if>
+      <if test="creatdate != null">
+        creatdate = #{creatdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="afterstatus != null">
+        afterstatus = #{afterstatus,jdbcType=INTEGER},
+      </if>
+      <if test="bz != null">
+        bz = #{bz,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jianzhi.model.SpotcheckMemberChange">
+    update pxbm_spotcheck_member_change
+    set xh = #{xh,jdbcType=INTEGER},
+      dwm = #{dwm,jdbcType=VARCHAR},
+      xm = #{xm,jdbcType=VARCHAR},
+      xb = #{xb,jdbcType=INTEGER},
+      age = #{age,jdbcType=INTEGER},
+      jobtitle = #{jobtitle,jdbcType=VARCHAR},
+      sfzhm = #{sfzhm,jdbcType=VARCHAR},
+      kmm = #{kmm,jdbcType=VARCHAR},
+      beforestatus = #{beforestatus,jdbcType=INTEGER},
+      spid = #{spid,jdbcType=INTEGER},
+      creatdate = #{creatdate,jdbcType=TIMESTAMP},
+      afterstatus = #{afterstatus,jdbcType=INTEGER},
+      bz = #{bz,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectSpotcheckMemberChangeList" parameterType="com.jianzhi.model.SpotcheckMemberChange" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pxbm_spotcheck_member_change
+    where spid = #{spid,jdbcType=INTEGER} 
+    <if test="dwm != null and dwm!=''">
+        and dwm like concat('%',#{dwm,jdbcType=VARCHAR},'%') 
+      </if>
+      <if test="xm != null and xm!=''">
+        and xm like concat('%',#{xm,jdbcType=VARCHAR},'%') 
+      </if>
+      <if test="xb != null">
+        and xb = #{xb,jdbcType=INTEGER} 
+      </if>
+      <if test="sfzhm != null and sfzhm!=''">
+        and sfzhm like concat('%',#{sfzhm,jdbcType=VARCHAR},'%') 
+      </if>
+      <if test="kmm != null and kmm!=''">
+        and kmm like concat('%',#{kmm,jdbcType=VARCHAR},'%') 
+      </if>
+  </select>
+  
+</mapper>

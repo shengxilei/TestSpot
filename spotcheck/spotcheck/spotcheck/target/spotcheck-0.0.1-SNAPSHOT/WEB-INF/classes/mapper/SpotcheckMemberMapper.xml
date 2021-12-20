@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jianzhi.mapper.SpotcheckMemberMapper">
+  <resultMap id="BaseResultMap" type="com.jianzhi.model.SpotcheckMember">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="xh" jdbcType="INTEGER" property="xh" />
+    <result column="dwm" jdbcType="VARCHAR" property="dwm" />
+    <result column="xm" jdbcType="VARCHAR" property="xm" />
+    <result column="xb" jdbcType="INTEGER" property="xb" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="jobtitle" jdbcType="VARCHAR" property="jobtitle" />
+    <result column="sfzhm" jdbcType="VARCHAR" property="sfzhm" />
+    <result column="kmm" jdbcType="VARCHAR" property="kmm" />
+    <result column="checkstatus" jdbcType="INTEGER" property="checkstatus" />
+    <result column="jg" jdbcType="INTEGER" property="jg" />
+    <result column="spid" jdbcType="INTEGER" property="spid" />
+    <result column="bz" jdbcType="VARCHAR" property="bz" />
+    <result column="is_zz" jdbcType="INTEGER" property="isZz" />
+    <result column="is_fj" jdbcType="INTEGER" property="isFj" />
+    <result column="kh_photo" jdbcType="VARCHAR" property="khphoto"></result>
+    <result column="pxbmid" jdbcType="VARCHAR" property="pxbmid"></result>
+    <result column="p_bj" jdbcType="INTEGER" property="p_bj"></result>
+    <result column="ll_jg" jdbcType="INTEGER" property="ll_jg"></result>
+    <result column="xhjd" jdbcType="INTEGER" property="xhjd"></result>
+    <result column="num" jdbcType="INTEGER" property="num"></result>
+  </resultMap>
+  <resultMap id="PhotoResult" type="com.jianzhi.model.Photo">
+    <id column="ID" jdbcType="INTEGER" property="ID"></id>
+    <result column="spid" jdbcType="INTEGER" property="spid"></result>
+    <result column="pxbmid" jdbcType="VARCHAR" property="pxbmId"></result>
+    <result column="kh_photo" jdbcType="VARCHAR" property="khphoto"></result>
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, xh, dwm, xm, xb, age, jobtitle, pxbmid,sfzhm, kmm, checkstatus, jg, spid ,bz, is_zz, is_fj,kh_photo,ll_jg,p_bj,num
+  </sql>
+  <sql id="Photo_Column_List">
+    ID,spid,pxbmid,kh_photo
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pxbm_spotcheck_member
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from pxbm_spotcheck_member
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jianzhi.model.SpotcheckMember">
+    insert into pxbm_spotcheck_member (id, xh, dwm, 
+      xm, xb, age, jobtitle, 
+      sfzhm, kmm, checkstatus, 
+      jg, spid)
+    values (#{id,jdbcType=INTEGER}, #{xh,jdbcType=INTEGER}, #{dwm,jdbcType=VARCHAR}, 
+      #{xm,jdbcType=VARCHAR}, #{xb,jdbcType=INTEGER}, #{age,jdbcType=INTEGER}, #{jobtitle,jdbcType=VARCHAR}, 
+      #{sfzhm,jdbcType=VARCHAR}, #{kmm,jdbcType=VARCHAR}, #{checkstatus,jdbcType=INTEGER}, 
+      #{jg,jdbcType=INTEGER}, #{spid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jianzhi.model.SpotcheckMember">
+    insert into pxbm_spotcheck_member
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="xh != null">
+        xh,
+      </if>
+      <if test="dwm != null">
+        dwm,
+      </if>
+      <if test="xm != null">
+        xm,
+      </if>
+      <if test="xb != null">
+        xb,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="jobtitle != null">
+        jobtitle,
+      </if>
+      <if test="sfzhm != null">
+        sfzhm,
+      </if>
+      <if test="kmm != null">
+        kmm,
+      </if>
+      <if test="checkstatus != null">
+        checkstatus,
+      </if>
+      <if test="jg != null">
+        jg,
+      </if>
+      <if test="spid != null">
+        spid,
+      </if>
+      <if test="xhjd !=null">
+        xhjd,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="xh != null">
+        #{xh,jdbcType=INTEGER},
+      </if>
+      <if test="dwm != null">
+        #{dwm,jdbcType=VARCHAR},
+      </if>
+      <if test="xm != null">
+        #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="xb != null">
+        #{xb,jdbcType=INTEGER},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="jobtitle != null">
+        #{jobtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzhm != null">
+        #{sfzhm,jdbcType=VARCHAR},
+      </if>
+      <if test="kmm != null">
+        #{kmm,jdbcType=VARCHAR},
+      </if>
+      <if test="checkstatus != null">
+        #{checkstatus,jdbcType=INTEGER},
+      </if>
+      <if test="jg != null">
+        #{jg,jdbcType=INTEGER},
+      </if>
+      <if test="spid != null">
+        #{spid,jdbcType=INTEGER},
+      </if>
+      <if test="xhjd != null">
+        #{xhjd,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jianzhi.model.SpotcheckMember">
+    update pxbm_spotcheck_member
+    <set>
+      <if test="xh != null">
+        xh = #{xh,jdbcType=INTEGER},
+      </if>
+      <if test="dwm != null">
+        dwm = #{dwm,jdbcType=VARCHAR},
+      </if>
+      <if test="xm != null">
+        xm = #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="xb != null">
+        xb = #{xb,jdbcType=INTEGER},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="jobtitle != null">
+        jobtitle = #{jobtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzhm != null">
+        sfzhm = #{sfzhm,jdbcType=VARCHAR},
+      </if>
+      <if test="kmm != null">
+        kmm = #{kmm,jdbcType=VARCHAR},
+      </if>
+      <if test="checkstatus != null">
+        checkstatus = #{checkstatus,jdbcType=INTEGER},
+      </if>
+      <if test="jg != null">
+        jg = #{jg,jdbcType=INTEGER},
+      </if>
+      <if test="spid != null">
+        spid = #{spid,jdbcType=INTEGER},
+      </if>
+      <if test="bz != null">
+        bz = #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="isFj != null">
+        is_fj = #{isFj,jdbcType=INTEGER},
+      </if>
+      <if test="xhjd != null">
+        xhjd = #{xhjd,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jianzhi.model.SpotcheckMember">
+    update pxbm_spotcheck_member
+    set xh = #{xh,jdbcType=INTEGER},
+      dwm = #{dwm,jdbcType=VARCHAR},
+      xm = #{xm,jdbcType=VARCHAR},
+      xb = #{xb,jdbcType=INTEGER},
+      age = #{age,jdbcType=INTEGER},
+      jobtitle = #{jobtitle,jdbcType=VARCHAR},
+      sfzhm = #{sfzhm,jdbcType=VARCHAR},
+      kmm = #{kmm,jdbcType=VARCHAR},
+      checkstatus = #{checkstatus,jdbcType=INTEGER},
+      jg = #{jg,jdbcType=INTEGER},
+      spid = #{spid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectSpotcheckMemberByDetail" parameterType="com.jianzhi.model.SpotcheckMember" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pxbm_spotcheck_member
+    <where>
+    	<if test="xh != null">
+        xh = #{xh,jdbcType=INTEGER} and
+      </if>
+      <if test="dwm != null and dwm!=''">
+        dwm = #{dwm,jdbcType=VARCHAR} and
+      </if>
+      <if test="mhdwm != null and mhdwm!=''">
+        dwm like concat('%',#{mhdwm,jdbcType=VARCHAR},'%') and
+      </if>
+      <if test="xm != null and xm!=''">
+        xm like concat('%',#{xm,jdbcType=VARCHAR},'%') and
+      </if>
+      <if test="xb != null and xb!=''">
+        xb = #{xb,jdbcType=INTEGER} and
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER} and
+      </if>
+      <if test="jobtitle != null">
+        jobtitle = #{jobtitle,jdbcType=VARCHAR} and
+      </if>
+      <if test="sfzhm != null and sfzhm!=''">
+        sfzhm like concat('%',#{sfzhm,jdbcType=VARCHAR},'%') and
+      </if>
+      <if test="kmm != null and kmm!=''">
+        kmm = #{kmm,jdbcType=VARCHAR} and
+      </if>
+      <if test="checkstatus != null">
+        checkstatus = #{checkstatus,jdbcType=INTEGER} and
+      </if>
+      <if test="jg != null">
+        jg = #{jg,jdbcType=INTEGER} and
+      </if>
+      <if test="isZz != null">
+        is_zz = #{isZz,jdbcType=INTEGER} and
+      </if>
+      <if test="spid != null">
+        spid = #{spid,jdbcType=INTEGER} and
+      </if>
+      <if test="isFj != null">
+        is_fj = #{isFj,jdbcType=INTEGER} and
+      </if>
+      <if test="ll_jg != null">
+        ll_jg = #{ll_jg,jdbcType=INTEGER} and
+      </if>
+      <if test="p_bj != null">
+        p_bj = #{p_bj,jdbcType=INTEGER} and
+      </if>
+      <if test="num != null">
+        num = #{num,jdbcType=INTEGER} and
+      </if>
+      1=1
+    </where>
+  </select>
+  
+  <update id="updateSpot">
+  	update pxbm_spotcheck_member set checkstatus=(
+  	select status from spot_prize where spmemid=#{id} and spid=#{spid} LIMIT 1
+  	) where id=#{id}
+  </update>
+  
+  <select id="selectPrize" resultType="int">
+  	select status from spot_prize where spmemid=#{id} and spid=#{spid} LIMIT 1
+  </select>
+  
+  <insert id="insertSpotcheckMemberList" parameterType="java.util.List">
+    insert into pxbm_spotcheck_member (
+    	xh, dwm,xm, xb,sfzhm, kmm, spid
+      )
+    values 
+     <foreach collection="spotcheckMemberList" item="it" separator=",">
+       (#{it.xh,jdbcType=INTEGER},#{it.dwm},#{it.xm},#{it.xb,jdbcType=INTEGER},#{it.sfzhm},#{it.kmm},#{it.spid,jdbcType=INTEGER})
+   </foreach>
+  </insert>
+  
+  
+  <select id="getNonedwm" resultType="java.lang.String">
+  	<!-- select DISTINCT(dwm) from pxbm_spotcheck_member 
+  	where spid=#{spid} and dwm not in(
+  	select dwm from en_qualifications_detail where zz_code=(
+  		select zz_code from subject where name=#{kmm}
+  		)
+  	) -->
+  	<!-- 查询附加完之后还没有资质的单位  -->
+  	select DISTINCT(dwm) from pxbm_spotcheck_member 
+  	where spid=#{spid} and is_zz=0 and dwm not in(
+  		select dwm from pxbm_spotcheck_member where is_fj=1 and spid=#{spid}
+  	)
+  </select>
+  
+  <select id="getSpotcheckMemberNumBydw" resultType="java.lang.String">
+  	select count(1) from pxbm_spotcheck_member 
+  	where dwm =#{dwm} and spid=#{spid}
+  </select>
+  
+  
+  <select id="getSpotcheckMemberByInfo" parameterType="com.jianzhi.model.SpotcheckMember" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pxbm_spotcheck_member
+    <where>
+      <if test="dwm != null and dwm!=''">
+        dwm = #{dwm,jdbcType=VARCHAR} and
+      </if>
+      <if test="xm != null and xm!=''">
+        xm like concat('%',#{xm,jdbcType=VARCHAR},'%') and
+      </if>
+      <if test="xb != null and xb!=''">
+        xb = #{xb,jdbcType=INTEGER} and
+      </if>
+      <if test="sfzhm != null and sfzhm!=''">
+        sfzhm like concat('%',#{sfzhm,jdbcType=VARCHAR},'%') and
+      </if>
+      <if test="kmm != null and kmm!=''">
+        kmm = #{kmm,jdbcType=VARCHAR} and
+      </if>
+      <if test="spid != null">
+        spid = #{spid,jdbcType=INTEGER} and
+      </if>
+      1=1 limit 1
+    </where>
+    
+  </select>
+  
+  <update id="updateJg"  >
+  	update pxbm_spotcheck_member set jg=#{jg,jdbcType=INTEGER} where id=#{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  <insert id="insertFromMemberTemp">
+  	insert into pxbm_spotcheck_member(dwm,xm, xb,sfzhm, kmm, spid, pxbmid,ll_jg)
+  	select dwm,xm, xb,sfzhm, kmm, spid, pxbmid,jg from pxbm_spotcheck_member_temp
+  	where spid=#{spid,jdbcType=INTEGER}
+  </insert>
+  
+  <select id="getHavedwmByCode" resultType="java.lang.String">
+  	select DISTINCT(dwm) from pxbm_spotcheck_member 
+  	where spid=#{spid} 
+  	and dwm in(
+  		select dwm from en_qualifications_detail where zz_code=#{zzCode}
+  		)
+  </select>
+  
+  
+  <update id="updateByDwmSetZz">
+  	update pxbm_spotcheck_member
+    set is_zz=1
+    where dwm in
+    <foreach collection="havedwnList" index="index" item="item"
+             separator="," open="(" close=")">
+      #{item,jdbcType=VARCHAR}
+    </foreach>
+  </update>
+  
+  <update id="updateJgStatus">
+  	update pxbm_spotcheck_member
+    set jg=#{jg,jdbcType=INTEGER}
+    where id in
+    <foreach collection="idlist" index="index" item="item"
+             separator="," open="(" close=")">
+      #{item,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  
+  <select id="getHavedwmBySpid"  resultType="java.lang.String">
+  	select DISTINCT(dwm) from pxbm_spotcheck_member 
+  	where spid=#{spid} 
+  	and  is_zz=1 
+  	and dwm not in(
+  		select dwm from pxbm_spotcheck_member where is_fj=1 and spid=#{spid}
+  		)
+  	and dwm not in(
+  		select dwm from spot_prize where status=1  and  spid=#{spid}
+  		)
+  </select>
+  
+  <select id="getNotCheck"  resultType="java.util.HashMap">
+  	SELECT dwm as 'key', count(1) as 'value'
+    FROM pxbm_spotcheck_member
+    WHERE checkstatus = 0 
+    AND spid =#{spid} 
+    <if test="dwm != null and dwm!=''">
+        and dwm like concat('%',#{dwm,jdbcType=VARCHAR},'%')
+      </if>
+    GROUP BY dwm
+  </select>
+  <select id="selecctPxbmId" parameterType="com.jianzhi.model.Pxbm" resultType="java.lang.Integer">
+        Select count(*) from  pxbm_spotcheck_member where pxbmid=#{id,jdbcType=VARCHAR}
+    </select>
+
+  <select id="getVeryDw" resultType="java.lang.String">
+    <!-- select DISTINCT(dwm) from pxbm_spotcheck_member
+    where spid=#{spid} and dwm not in(
+    select dwm from en_qualifications_detail where zz_code=(
+        select zz_code from subject where name=#{kmm}
+        )
+    ) -->
+    <!-- 查询附加完之后的单位  -->
+    select DISTINCT(dwm) from pxbm_spotcheck_member
+    where spid=#{spid}
+  </select>
+
+  <update id="uploadImgSpotheckMember" parameterType="com.jianzhi.model.SpotcheckMember">
+    Update pxbm_spotcheck_member set kh_photo=#{khphoto,jdbcType=VARCHAR} where pxbmid=#{pxbmid,jdbcType=VARCHAR} and spid=#{spid}
+  </update>
+
+  <update id="deleteImgurl" parameterType="com.jianzhi.model.SpotcheckMember">
+    Update pxbm_spotcheck_member set kh_photo=#{khphoto} where pxbmid=#{pxbmid,jdbcType=VARCHAR} and spid=#{spid}
+  </update>
+
+  <select id="selectImgurl" parameterType="com.jianzhi.model.Photo" resultMap="PhotoResult">
+    select  kh_photo from pxbm_kh_photo where pxbmid=#{pxbmId,jdbcType=VARCHAR} and spid=#{spid}
+  </select>
+
+  <insert id="insertKhphoto" parameterType="com.jianzhi.model.Photo">
+    insert into pxbm_kh_photo (spid,pxbmid,kh_photo) values (#{spid},#{pxbmId},#{khphoto})
+  </insert>
+
+  <delete id="deleteimg" parameterType="java.lang.String" >
+    delete  from pxbm_kh_photo where kh_photo=#{khphoto}
+  </delete>
+
+  <select id="selectKh_photo" parameterType="com.jianzhi.model.SpotcheckMember" resultType="java.lang.String">
+     select  kh_photo from pxbm_spotcheck_member where pxbmid=#{pxbmid,jdbcType=VARCHAR} and spid=#{spid}
+  </select>
+
+  <update id="updateCheckstatus" parameterType="java.lang.Integer">
+    update pxbm_spotcheck_member m,spot_prize p set m.checkstatus=p.status where m.id=p.spmemid and m.spid=#{spid}
+  </update>
+
+  <select id="selectCheckstatus" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    Select COUNT(*) from pxbm_spotcheck_member where checkstatus!=0 and spid=#{spid}
+  </select>
+
+  <select id="getPxbmIdr_jgCheckstatus" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"></include> from pxbm_spotcheck_member where spid=#{spid}
+  </select>
+
+  <update id="updateP_bj">
+      Update pxbm_spotcheck_member set p_bj=#{p_bj,jdbcType=INTEGER},num=#{num,jdbcType=INTEGER}
+    where id in
+    <foreach collection="idlist" index="index" item="item"
+             separator="," open="(" close=")">
+      #{item,jdbcType=INTEGER}
+    </foreach>
+
+
+  </update>
+
+  <select id="listpxbmid" resultType="java.lang.String">
+    select pxbmid from pxbm_spotcheck_member
+    where id in
+    <foreach collection="idlist" index="index" item="item"
+             separator="," open="(" close=")">
+      #{item,jdbcType=INTEGER}
+    </foreach>
+
+  </select>
+
+  <select id="selectIsCheckStatusSpotmember" parameterType="com.jianzhi.model.Spotcheck" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    FROM pxbm_spotcheck_member where spid in (
+    select id from pxbm_spotcheck where area_name=#{areaName,jdbcType=VARCHAR} and kmm=#{kmm,jdbcType=VARCHAR} and isdelete=0 and is_dqenter=1 and is_xhenter=1 and xhjd=0 and xhenterTime &lt;=#{jdTime,jdbcType=DATE}
+    ) and checkstatus=1 and jg=1 and xhjd=0 and ll_jg=1 and p_bj=1
+
+  </select>
+  <select id="selectNotCheckStatusSpotmember" parameterType="com.jianzhi.model.Spotcheck" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    FROM pxbm_spotcheck_member where spid in (
+    select id from pxbm_spotcheck where area_name=#{areaName,jdbcType=VARCHAR} and kmm=#{kmm,jdbcType=VARCHAR} and isdelete=0 and is_dqenter=1 and is_xhenter=1 and xhjd=0 and xhenterTime &lt;=#{jdTime,jdbcType=DATE}
+    ) and checkstatus!=1 and jg=1 and xhjd=0 and ll_jg=1 and p_bj=1
+
+  </select>
+
+  <insert id="addspotMember" parameterType="com.jianzhi.model.SpotcheckMember">
+    insert into pxbm_spotcheck_member(dwm,xm, xb,sfzhm, kmm, spid, pxbmid,ll_jg,xhjd,jg,p_bj)
+    values (#{dwm,jdbcType=VARCHAR},#{xm,jdbcType=VARCHAR},#{xb,jdbcType=INTEGER},#{sfzhm,jdbcType=VARCHAR},#{kmm,jdbcType=VARCHAR},#{spid,jdbcType=INTEGER},#{pxbmid,jdbcType=VARCHAR},#{ll_jg,jdbcType=INTEGER},#{xhjd,jdbcType=INTEGER},#{jg,jdbcType=INTEGER},#{p_bj,jdbcType=INTEGER})
+  </insert>
+
+  <update id="updateCheckStusIsCZ" parameterType="com.jianzhi.model.SpotcheckMember">
+    update pxbm_spotcheck_member set checkstatus=1 where sfzhm=#{sfzhm,jdbcType=VARCHAR} and spid=#{spid,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateCheckStusNotWCZ" parameterType="com.jianzhi.model.SpotcheckMember">
+ update pxbm_spotcheck_member set checkstatus=2 where sfzhm=#{sfzhm,jdbcType=VARCHAR} and spid=#{spid,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateSpmXhjd" parameterType="com.jianzhi.model.SpotcheckMember">
+    UPDATE pxbm_spotcheck_member set xhjd=#{xhjd,jdbcType=INTEGER} where spid=#{spid,jdbcType=INTEGER} and sfzhm=#{sfzhm,jdbcType=VARCHAR}
+
+  </update>
+
+  <select id="getSelectXhJdSpotmember" parameterType="com.jianzhi.model.SpotcheckMember" resultMap="BaseResultMap">
+    SELECT  <include refid="Base_Column_List" />  from pxbm_spotcheck_member where spid=#{spid,jdbcType=INTEGER} and is_fj=0
+  </select>
+
+  <select id="getSelectAleaderCheckStusSpm" parameterType="com.jianzhi.model.SpotcheckMember" resultType="java.lang.Integer">
+    Select COUNT(1) from pxbm_spotcheck_member where spid=#{spid,jdbcType=INTEGER}  and xhjd=#{xhjd,jdbcType=INTEGER}
+  </select>
+
+  <update id="deleteXhSpotmember" parameterType="java.lang.Integer" >
+    UPDATE pxbm_spotcheck_member set xhjd=0 where id=#{id}
+  </update>
+</mapper>

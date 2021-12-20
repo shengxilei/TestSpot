@@ -1,0 +1,951 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jianzhi.mapper.PxbmMapper">
+    <resultMap id="BaseResultMap" type="com.jianzhi.model.Pxbm">
+        <id column="ID" jdbcType="VARCHAR" property="id"/>
+        <result column="MID" jdbcType="VARCHAR" property="mid"/>
+        <result column="YYYY" jdbcType="VARCHAR" property="yyyy"/>
+        <result column="DJC" jdbcType="VARCHAR" property="djc"/>
+        <result column="U_ID" jdbcType="VARCHAR" property="uId"/>
+        <result column="XM" jdbcType="VARCHAR" property="xm"/>
+        <result column="XB" jdbcType="VARCHAR" property="xb"/>
+        <result column="SFZHM" jdbcType="VARCHAR" property="sfzhm"/>
+        <result column="AGE2" jdbcType="DECIMAL" property="age2"/>
+        <result column="SGZ_BH" jdbcType="VARCHAR" property="sgzBh"/>
+        <result column="PXZZH" jdbcType="VARCHAR" property="pxzzh"/>
+        <result column="XL_CODE" jdbcType="VARCHAR" property="xlCode"/>
+        <result column="XL" jdbcType="VARCHAR" property="xl"/>
+        <result column="ZC_CODE" jdbcType="VARCHAR" property="zcCode"/>
+        <result column="ZC" jdbcType="VARCHAR" property="zc"/>
+        <result column="ZY" jdbcType="VARCHAR" property="zy"/>
+        <result column="AREA_CODE" jdbcType="VARCHAR" property="areaCode"/>
+        <result column="AREA_NAME" jdbcType="VARCHAR" property="areaName"/>
+        <result column="DWID" jdbcType="VARCHAR" property="dwid"/>
+        <result column="DWM" jdbcType="VARCHAR" property="dwm"/>
+        <result column="KM_CODE" jdbcType="VARCHAR" property="kmCode"/>
+        <result column="KMM" jdbcType="VARCHAR" property="kmm"/>
+        <result column="IS_FP" jdbcType="VARCHAR" property="isFp"/>
+        <result column="IS_ZS" jdbcType="VARCHAR" property="isZs"/>
+        <result column="ADDT" jdbcType="TIMESTAMP" property="addt"/>
+        <result column="NOTIFY_ID" jdbcType="VARCHAR" property="notifyId"/>
+        <result column="CLASS_ID" jdbcType="VARCHAR" property="classId"/>
+        <result column="ZT" jdbcType="VARCHAR" property="zt"/>
+        <result column="IS_REAL_PX" jdbcType="VARCHAR" property="isRealPx"/>
+        <result column="BZ" jdbcType="VARCHAR" property="bz"/>
+        <result column="KS_YYYY" jdbcType="VARCHAR" property="ksYyyy"/>
+        <result column="KSCJ_ID" jdbcType="VARCHAR" property="kscjId"/>
+        <result column="FS" jdbcType="DECIMAL" property="fs"/>
+        <result column="FS2" jdbcType="DECIMAL" property="fs2"/>
+        <result column="KQ" jdbcType="VARCHAR" property="kq"/>
+        <result column="JG" jdbcType="VARCHAR" property="jg"/>
+        <result column="OP_ZT" jdbcType="VARCHAR" property="opZt"/>
+        <result column="REAL_OP" jdbcType="VARCHAR" property="realOp"/>
+        <result column="REAL_OP_DWID" jdbcType="VARCHAR" property="realOpDwid"/>
+        <result column="REAL_OP_T" jdbcType="TIMESTAMP" property="realOpT"/>
+        <result column="IMP_TY" jdbcType="VARCHAR" property="impTy"/>
+        <result column="IS_CJTJ" jdbcType="VARCHAR" property="isCjtj"/>
+        <result column="IS_USE" jdbcType="VARCHAR" property="isUse"/>
+        <result column="CHANGE_T" jdbcType="TIMESTAMP" property="changeT"/>
+        <result column="BZ2" jdbcType="VARCHAR" property="bz2"/>
+        <result column="DOWN_N" jdbcType="DECIMAL" property="downN"/>
+        <result column="ALLOW_DEAL_TO_PXZ" jdbcType="VARCHAR" property="allowDealToPxz"/>
+        <result column="IS_CNS" jdbcType="INTEGER" property="isCNS"/>
+        <result column="IS_SB" jdbcType="INTEGER" property="isSB"/>
+        <result column="SPID" jdbcType="INTEGER" property="spid"/>
+        <result column="ISFP" jdbcType="INTEGER" property="isfp"/>
+        <result column="IS_APPLY" jdbcType="INTEGER" property="isApply"/>
+        <result column="APPLY" jdbcType="VARCHAR" property="apply"/>
+        <result column="REPLY" jdbcType="VARCHAR" property="reply"/>
+        <result column="kh_photo" jdbcType="VARCHAR" property="khphoto"></result>
+        <result column="p_bj" jdbcType="INTEGER" property="p_bj"></result>
+        <result column="is_jd" jdbcType="INTEGER" property="is_jd"></result>
+    </resultMap>
+    <sql id="Base_Column_List">
+        ID, <!-- MID, YYYY, DJC, U_ID,  -->
+        XM, XB, SFZHM, AGE2, SGZ_BH, PXZZH, XL_CODE, XL, ZC_CODE,
+        ZC, ZY, AREA_CODE, AREA_NAME, DWID, DWM, KM_CODE, KMM,
+        <!-- IS_FP, IS_ZS, ADDT, NOTIFY_ID, CLASS_ID, ZT, IS_REAL_PX, BZ, KS_YYYY, KSCJ_ID,  -->
+        FS, FS2, KQ, JG, OP_ZT ,IS_CNS ,IS_SB, BZ2 ,SPID ,ISFP ,IS_APPLY ,APPLY ,REPLY,p_bj,IS_USE
+        <!-- REAL_OP,REAL_OP_DWID, REAL_OP_T, IMP_TY, IS_CJTJ, IS_USE, CHANGE_T,  DOWN_N, ALLOW_DEAL_TO_PXZ -->
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from pxbm
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from pxbm
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.jianzhi.model.Pxbm">
+    insert into pxbm (ID, MID, YYYY, 
+      DJC, U_ID, XM, XB, 
+      SFZHM, AGE2, SGZ_BH, 
+      PXZZH, XL_CODE, XL, 
+      ZC_CODE, ZC, ZY, AREA_CODE, 
+      AREA_NAME, DWID, DWM, 
+      KM_CODE, KMM, IS_FP, 
+      IS_ZS, ADDT, NOTIFY_ID, 
+      CLASS_ID, ZT, IS_REAL_PX, 
+      BZ, KS_YYYY, KSCJ_ID, 
+      FS, FS2, KQ, JG, 
+      OP_ZT, REAL_OP, REAL_OP_DWID, 
+      REAL_OP_T, IMP_TY, IS_CJTJ, 
+      IS_USE, CHANGE_T, BZ2, 
+      DOWN_N, ALLOW_DEAL_TO_PXZ)
+    values (#{id,jdbcType=VARCHAR}, #{mid,jdbcType=VARCHAR}, #{yyyy,jdbcType=VARCHAR}, 
+      #{djc,jdbcType=VARCHAR}, #{uId,jdbcType=VARCHAR}, #{xm,jdbcType=VARCHAR}, #{xb,jdbcType=VARCHAR}, 
+      #{sfzhm,jdbcType=VARCHAR}, #{age2,jdbcType=DECIMAL}, #{sgzBh,jdbcType=VARCHAR}, 
+      #{pxzzh,jdbcType=VARCHAR}, #{xlCode,jdbcType=VARCHAR}, #{xl,jdbcType=VARCHAR}, 
+      #{zcCode,jdbcType=VARCHAR}, #{zc,jdbcType=VARCHAR}, #{zy,jdbcType=VARCHAR}, #{areaCode,jdbcType=VARCHAR}, 
+      #{areaName,jdbcType=VARCHAR}, #{dwid,jdbcType=VARCHAR}, #{dwm,jdbcType=VARCHAR}, 
+      #{kmCode,jdbcType=VARCHAR}, #{kmm,jdbcType=VARCHAR}, #{isFp,jdbcType=VARCHAR}, 
+      #{isZs,jdbcType=VARCHAR}, #{addt,jdbcType=TIMESTAMP}, #{notifyId,jdbcType=VARCHAR}, 
+      #{classId,jdbcType=VARCHAR}, #{zt,jdbcType=VARCHAR}, #{isRealPx,jdbcType=VARCHAR}, 
+      #{bz,jdbcType=VARCHAR}, #{ksYyyy,jdbcType=VARCHAR}, #{kscjId,jdbcType=VARCHAR}, 
+      #{fs,jdbcType=DECIMAL}, #{fs2,jdbcType=DECIMAL}, #{kq,jdbcType=VARCHAR}, #{jg,jdbcType=VARCHAR}, 
+      #{opZt,jdbcType=VARCHAR}, #{realOp,jdbcType=VARCHAR}, #{realOpDwid,jdbcType=VARCHAR}, 
+      #{realOpT,jdbcType=TIMESTAMP}, #{impTy,jdbcType=VARCHAR}, #{isCjtj,jdbcType=VARCHAR}, 
+      #{isUse,jdbcType=VARCHAR}, #{changeT,jdbcType=TIMESTAMP}, #{bz2,jdbcType=VARCHAR}, 
+      #{downN,jdbcType=DECIMAL}, #{allowDealToPxz,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.jianzhi.model.Pxbm">
+        insert into pxbm
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="mid != null">
+                MID,
+            </if>
+            <if test="yyyy != null">
+                YYYY,
+            </if>
+            <if test="djc != null">
+                DJC,
+            </if>
+            <if test="uId != null">
+                U_ID,
+            </if>
+            <if test="xm != null">
+                XM,
+            </if>
+            <if test="xb != null">
+                XB,
+            </if>
+            <if test="sfzhm != null">
+                SFZHM,
+            </if>
+            <if test="age2 != null">
+                AGE2,
+            </if>
+            <if test="sgzBh != null">
+                SGZ_BH,
+            </if>
+            <if test="pxzzh != null">
+                PXZZH,
+            </if>
+            <if test="xlCode != null">
+                XL_CODE,
+            </if>
+            <if test="xl != null">
+                XL,
+            </if>
+            <if test="zcCode != null">
+                ZC_CODE,
+            </if>
+            <if test="zc != null">
+                ZC,
+            </if>
+            <if test="zy != null">
+                ZY,
+            </if>
+            <if test="areaCode != null">
+                AREA_CODE,
+            </if>
+            <if test="areaName != null">
+                AREA_NAME,
+            </if>
+            <if test="dwid != null">
+                DWID,
+            </if>
+            <if test="dwm != null">
+                DWM,
+            </if>
+            <if test="kmCode != null">
+                KM_CODE,
+            </if>
+            <if test="kmm != null">
+                KMM,
+            </if>
+            <if test="isFp != null">
+                IS_FP,
+            </if>
+            <if test="isZs != null">
+                IS_ZS,
+            </if>
+            <if test="addt != null">
+                ADDT,
+            </if>
+            <if test="notifyId != null">
+                NOTIFY_ID,
+            </if>
+            <if test="classId != null">
+                CLASS_ID,
+            </if>
+            <if test="zt != null">
+                ZT,
+            </if>
+            <if test="isRealPx != null">
+                IS_REAL_PX,
+            </if>
+            <if test="bz != null">
+                BZ,
+            </if>
+            <if test="ksYyyy != null">
+                KS_YYYY,
+            </if>
+            <if test="kscjId != null">
+                KSCJ_ID,
+            </if>
+            <if test="fs != null">
+                FS,
+            </if>
+            <if test="fs2 != null">
+                FS2,
+            </if>
+            <if test="kq != null">
+                KQ,
+            </if>
+            <if test="jg != null">
+                JG,
+            </if>
+            <if test="opZt != null">
+                OP_ZT,
+            </if>
+            <if test="realOp != null">
+                REAL_OP,
+            </if>
+            <if test="realOpDwid != null">
+                REAL_OP_DWID,
+            </if>
+            <if test="realOpT != null">
+                REAL_OP_T,
+            </if>
+            <if test="impTy != null">
+                IMP_TY,
+            </if>
+            <if test="isCjtj != null">
+                IS_CJTJ,
+            </if>
+            <if test="isUse != null">
+                IS_USE,
+            </if>
+            <if test="changeT != null">
+                CHANGE_T,
+            </if>
+            <if test="bz2 != null">
+                BZ2,
+            </if>
+            <if test="downN != null">
+                DOWN_N,
+            </if>
+            <if test="allowDealToPxz != null">
+                ALLOW_DEAL_TO_PXZ,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="mid != null">
+                #{mid,jdbcType=VARCHAR},
+            </if>
+            <if test="yyyy != null">
+                #{yyyy,jdbcType=VARCHAR},
+            </if>
+            <if test="djc != null">
+                #{djc,jdbcType=VARCHAR},
+            </if>
+            <if test="uId != null">
+                #{uId,jdbcType=VARCHAR},
+            </if>
+            <if test="xm != null">
+                #{xm,jdbcType=VARCHAR},
+            </if>
+            <if test="xb != null">
+                #{xb,jdbcType=VARCHAR},
+            </if>
+            <if test="sfzhm != null">
+                #{sfzhm,jdbcType=VARCHAR},
+            </if>
+            <if test="age2 != null">
+                #{age2,jdbcType=DECIMAL},
+            </if>
+            <if test="sgzBh != null">
+                #{sgzBh,jdbcType=VARCHAR},
+            </if>
+            <if test="pxzzh != null">
+                #{pxzzh,jdbcType=VARCHAR},
+            </if>
+            <if test="xlCode != null">
+                #{xlCode,jdbcType=VARCHAR},
+            </if>
+            <if test="xl != null">
+                #{xl,jdbcType=VARCHAR},
+            </if>
+            <if test="zcCode != null">
+                #{zcCode,jdbcType=VARCHAR},
+            </if>
+            <if test="zc != null">
+                #{zc,jdbcType=VARCHAR},
+            </if>
+            <if test="zy != null">
+                #{zy,jdbcType=VARCHAR},
+            </if>
+            <if test="areaCode != null">
+                #{areaCode,jdbcType=VARCHAR},
+            </if>
+            <if test="areaName != null">
+                #{areaName,jdbcType=VARCHAR},
+            </if>
+            <if test="dwid != null">
+                #{dwid,jdbcType=VARCHAR},
+            </if>
+            <if test="dwm != null">
+                #{dwm,jdbcType=VARCHAR},
+            </if>
+            <if test="kmCode != null">
+                #{kmCode,jdbcType=VARCHAR},
+            </if>
+            <if test="kmm != null">
+                #{kmm,jdbcType=VARCHAR},
+            </if>
+            <if test="isFp != null">
+                #{isFp,jdbcType=VARCHAR},
+            </if>
+            <if test="isZs != null">
+                #{isZs,jdbcType=VARCHAR},
+            </if>
+            <if test="addt != null">
+                #{addt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="notifyId != null">
+                #{notifyId,jdbcType=VARCHAR},
+            </if>
+            <if test="classId != null">
+                #{classId,jdbcType=VARCHAR},
+            </if>
+            <if test="zt != null">
+                #{zt,jdbcType=VARCHAR},
+            </if>
+            <if test="isRealPx != null">
+                #{isRealPx,jdbcType=VARCHAR},
+            </if>
+            <if test="bz != null">
+                #{bz,jdbcType=VARCHAR},
+            </if>
+            <if test="ksYyyy != null">
+                #{ksYyyy,jdbcType=VARCHAR},
+            </if>
+            <if test="kscjId != null">
+                #{kscjId,jdbcType=VARCHAR},
+            </if>
+            <if test="fs != null">
+                #{fs,jdbcType=DECIMAL},
+            </if>
+            <if test="fs2 != null">
+                #{fs2,jdbcType=DECIMAL},
+            </if>
+            <if test="kq != null">
+                #{kq,jdbcType=VARCHAR},
+            </if>
+            <if test="jg != null">
+                #{jg,jdbcType=VARCHAR},
+            </if>
+            <if test="opZt != null">
+                #{opZt,jdbcType=VARCHAR},
+            </if>
+            <if test="realOp != null">
+                #{realOp,jdbcType=VARCHAR},
+            </if>
+            <if test="realOpDwid != null">
+                #{realOpDwid,jdbcType=VARCHAR},
+            </if>
+            <if test="realOpT != null">
+                #{realOpT,jdbcType=TIMESTAMP},
+            </if>
+            <if test="impTy != null">
+                #{impTy,jdbcType=VARCHAR},
+            </if>
+            <if test="isCjtj != null">
+                #{isCjtj,jdbcType=VARCHAR},
+            </if>
+            <if test="isUse != null">
+                #{isUse,jdbcType=VARCHAR},
+            </if>
+            <if test="changeT != null">
+                #{changeT,jdbcType=TIMESTAMP},
+            </if>
+            <if test="bz2 != null">
+                #{bz2,jdbcType=VARCHAR},
+            </if>
+            <if test="downN != null">
+                #{downN,jdbcType=DECIMAL},
+            </if>
+            <if test="allowDealToPxz != null">
+                #{allowDealToPxz,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.jianzhi.model.Pxbm">
+        update pxbm
+        <set>
+            <if test="mid != null">
+                MID = #{mid,jdbcType=VARCHAR},
+            </if>
+            <if test="yyyy != null">
+                YYYY = #{yyyy,jdbcType=VARCHAR},
+            </if>
+            <if test="djc != null">
+                DJC = #{djc,jdbcType=VARCHAR},
+            </if>
+            <if test="uId != null">
+                U_ID = #{uId,jdbcType=VARCHAR},
+            </if>
+            <if test="xm != null">
+                XM = #{xm,jdbcType=VARCHAR},
+            </if>
+            <if test="xb != null">
+                XB = #{xb,jdbcType=VARCHAR},
+            </if>
+            <if test="sfzhm != null">
+                SFZHM = #{sfzhm,jdbcType=VARCHAR},
+            </if>
+            <if test="age2 != null">
+                AGE2 = #{age2,jdbcType=DECIMAL},
+            </if>
+            <if test="sgzBh != null">
+                SGZ_BH = #{sgzBh,jdbcType=VARCHAR},
+            </if>
+            <if test="pxzzh != null">
+                PXZZH = #{pxzzh,jdbcType=VARCHAR},
+            </if>
+            <if test="xlCode != null">
+                XL_CODE = #{xlCode,jdbcType=VARCHAR},
+            </if>
+            <if test="xl != null">
+                XL = #{xl,jdbcType=VARCHAR},
+            </if>
+            <if test="zcCode != null">
+                ZC_CODE = #{zcCode,jdbcType=VARCHAR},
+            </if>
+            <if test="zc != null">
+                ZC = #{zc,jdbcType=VARCHAR},
+            </if>
+            <if test="zy != null">
+                ZY = #{zy,jdbcType=VARCHAR},
+            </if>
+            <if test="areaCode != null">
+                AREA_CODE = #{areaCode,jdbcType=VARCHAR},
+            </if>
+            <if test="areaName != null">
+                AREA_NAME = #{areaName,jdbcType=VARCHAR},
+            </if>
+            <if test="dwid != null">
+                DWID = #{dwid,jdbcType=VARCHAR},
+            </if>
+            <if test="dwm != null">
+                DWM = #{dwm,jdbcType=VARCHAR},
+            </if>
+            <if test="kmCode != null">
+                KM_CODE = #{kmCode,jdbcType=VARCHAR},
+            </if>
+            <if test="kmm != null">
+                KMM = #{kmm,jdbcType=VARCHAR},
+            </if>
+            <if test="isFp != null">
+                IS_FP = #{isFp,jdbcType=VARCHAR},
+            </if>
+            <if test="isZs != null">
+                IS_ZS = #{isZs,jdbcType=VARCHAR},
+            </if>
+            <if test="addt != null">
+                ADDT = #{addt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="notifyId != null">
+                NOTIFY_ID = #{notifyId,jdbcType=VARCHAR},
+            </if>
+            <if test="classId != null">
+                CLASS_ID = #{classId,jdbcType=VARCHAR},
+            </if>
+            <if test="zt != null">
+                ZT = #{zt,jdbcType=VARCHAR},
+            </if>
+            <if test="isRealPx != null">
+                IS_REAL_PX = #{isRealPx,jdbcType=VARCHAR},
+            </if>
+            <if test="bz != null">
+                BZ = #{bz,jdbcType=VARCHAR},
+            </if>
+            <if test="ksYyyy != null">
+                KS_YYYY = #{ksYyyy,jdbcType=VARCHAR},
+            </if>
+            <if test="kscjId != null">
+                KSCJ_ID = #{kscjId,jdbcType=VARCHAR},
+            </if>
+            <if test="fs != null">
+                FS = #{fs,jdbcType=DECIMAL},
+            </if>
+            <if test="fs2 != null">
+                FS2 = #{fs2,jdbcType=DECIMAL},
+            </if>
+            <if test="kq != null">
+                KQ = #{kq,jdbcType=VARCHAR},
+            </if>
+            <if test="jg != null">
+                JG = #{jg,jdbcType=VARCHAR},
+            </if>
+            <if test="opZt != null">
+                OP_ZT = #{opZt,jdbcType=VARCHAR},
+            </if>
+            <if test="realOp != null">
+                REAL_OP = #{realOp,jdbcType=VARCHAR},
+            </if>
+            <if test="realOpDwid != null">
+                REAL_OP_DWID = #{realOpDwid,jdbcType=VARCHAR},
+            </if>
+            <if test="realOpT != null">
+                REAL_OP_T = #{realOpT,jdbcType=TIMESTAMP},
+            </if>
+            <if test="impTy != null">
+                IMP_TY = #{impTy,jdbcType=VARCHAR},
+            </if>
+            <if test="isCjtj != null">
+                IS_CJTJ = #{isCjtj,jdbcType=VARCHAR},
+            </if>
+            <if test="isUse != null">
+                IS_USE = #{isUse,jdbcType=VARCHAR},
+            </if>
+            <if test="changeT != null">
+                CHANGE_T = #{changeT,jdbcType=TIMESTAMP},
+            </if>
+            <if test="bz2 != null">
+                BZ2 = #{bz2,jdbcType=VARCHAR},
+            </if>
+            <if test="downN != null">
+                DOWN_N = #{downN,jdbcType=DECIMAL},
+            </if>
+            <if test="allowDealToPxz != null">
+                ALLOW_DEAL_TO_PXZ = #{allowDealToPxz,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.jianzhi.model.Pxbm">
+    update pxbm
+    set MID = #{mid,jdbcType=VARCHAR},
+      YYYY = #{yyyy,jdbcType=VARCHAR},
+      DJC = #{djc,jdbcType=VARCHAR},
+      U_ID = #{uId,jdbcType=VARCHAR},
+      XM = #{xm,jdbcType=VARCHAR},
+      XB = #{xb,jdbcType=VARCHAR},
+      SFZHM = #{sfzhm,jdbcType=VARCHAR},
+      AGE2 = #{age2,jdbcType=DECIMAL},
+      SGZ_BH = #{sgzBh,jdbcType=VARCHAR},
+      PXZZH = #{pxzzh,jdbcType=VARCHAR},
+      XL_CODE = #{xlCode,jdbcType=VARCHAR},
+      XL = #{xl,jdbcType=VARCHAR},
+      ZC_CODE = #{zcCode,jdbcType=VARCHAR},
+      ZC = #{zc,jdbcType=VARCHAR},
+      ZY = #{zy,jdbcType=VARCHAR},
+      AREA_CODE = #{areaCode,jdbcType=VARCHAR},
+      AREA_NAME = #{areaName,jdbcType=VARCHAR},
+      DWID = #{dwid,jdbcType=VARCHAR},
+      DWM = #{dwm,jdbcType=VARCHAR},
+      KM_CODE = #{kmCode,jdbcType=VARCHAR},
+      KMM = #{kmm,jdbcType=VARCHAR},
+      IS_FP = #{isFp,jdbcType=VARCHAR},
+      IS_ZS = #{isZs,jdbcType=VARCHAR},
+      ADDT = #{addt,jdbcType=TIMESTAMP},
+      NOTIFY_ID = #{notifyId,jdbcType=VARCHAR},
+      CLASS_ID = #{classId,jdbcType=VARCHAR},
+      ZT = #{zt,jdbcType=VARCHAR},
+      IS_REAL_PX = #{isRealPx,jdbcType=VARCHAR},
+      BZ = #{bz,jdbcType=VARCHAR},
+      KS_YYYY = #{ksYyyy,jdbcType=VARCHAR},
+      KSCJ_ID = #{kscjId,jdbcType=VARCHAR},
+      FS = #{fs,jdbcType=DECIMAL},
+      FS2 = #{fs2,jdbcType=DECIMAL},
+      KQ = #{kq,jdbcType=VARCHAR},
+      JG = #{jg,jdbcType=VARCHAR},
+      OP_ZT = #{opZt,jdbcType=VARCHAR},
+      REAL_OP = #{realOp,jdbcType=VARCHAR},
+      REAL_OP_DWID = #{realOpDwid,jdbcType=VARCHAR},
+      REAL_OP_T = #{realOpT,jdbcType=TIMESTAMP},
+      IMP_TY = #{impTy,jdbcType=VARCHAR},
+      IS_CJTJ = #{isCjtj,jdbcType=VARCHAR},
+      IS_USE = #{isUse,jdbcType=VARCHAR},
+      CHANGE_T = #{changeT,jdbcType=TIMESTAMP},
+      BZ2 = #{bz2,jdbcType=VARCHAR},
+      DOWN_N = #{downN,jdbcType=DECIMAL},
+      ALLOW_DEAL_TO_PXZ = #{allowDealToPxz,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+
+    <select id="selectPxbmByDetail" parameterType="com.jianzhi.model.Pxbm" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from pxbm
+        <where>
+            <if test="uId != null">
+                U_ID = #{uId,jdbcType=VARCHAR} and
+            </if>
+            <if test="xm != null and xm!=''">
+                XM like concat('%',#{xm,jdbcType=VARCHAR},'%') and
+            </if>
+            <if test="xb != null and xb!=''">
+                XB = #{xb,jdbcType=VARCHAR} and
+            </if>
+            <if test="sfzhm != null and sfzhm!=''">
+                SFZHM like concat('%',#{sfzhm,jdbcType=VARCHAR},'%') and
+            </if>
+            <if test="age2 != null">
+                AGE2 = #{age2,jdbcType=DECIMAL} and
+            </if>
+            <if test="sgzBh != null">
+                SGZ_BH = #{sgzBh,jdbcType=VARCHAR} and
+            </if>
+            <if test="pxzzh != null">
+                PXZZH = #{pxzzh,jdbcType=VARCHAR} and
+            </if>
+
+            <if test="areaName != null and areaName!=''">
+                AREA_NAME = #{areaName,jdbcType=VARCHAR} and
+            </if>
+
+            <if test="dwm != null and dwm!=''">
+                DWM like concat('%',#{dwm,jdbcType=VARCHAR},'%') and
+            </if>
+            <if test="jqdwm != null and jqdwm!=''">
+                DWM =#{jqdwm,jdbcType=VARCHAR} and
+            </if>
+            <if test="kmm != null and kmm!=''">
+                KMM = #{kmm,jdbcType=VARCHAR} and
+            </if>
+            <if test="fs2 != null">
+                FS2 = #{fs2,jdbcType=DECIMAL} and
+            </if>
+            <if test="kq != null">
+                KQ = #{kq,jdbcType=VARCHAR} and
+            </if>
+            <if test="jg != null and jg!=''">
+                JG = #{jg,jdbcType=VARCHAR} and
+            </if>
+            <if test="opZt != null and opZt!=''">
+                OP_ZT = #{opZt,jdbcType=VARCHAR} and
+            </if>
+            <if test="isCNS != null">
+                is_cns = #{isCNS,jdbcType=INTEGER} and
+            </if>
+            <if test="isSB != null">
+                is_sb = #{isSB,jdbcType=INTEGER} and
+            </if>
+            <if test="isfp != null">
+                isfp = #{isfp,jdbcType=INTEGER} and
+            </if>
+            <if test="isApply != null">
+                is_apply = #{isApply,jdbcType=INTEGER} and
+            </if>
+            <if test="isUse != null and isUse!=''">
+                IS_USE = #{isUse,jdbcType=VARCHAR} and
+            </if>
+            <if test="p_bj !=null">
+                p_bj = #{p_bj,jdbcType=INTEGER} and
+            </if>
+            1=1
+        </where>
+    </select>
+
+
+    <update id="updateCNSorSBorBZ2">
+        update pxbm
+        <set>
+            <if test="cns != null">
+                is_cns=#{cns,jdbcType=INTEGER},
+            </if>
+            <if test="sb != null">
+                is_sb=#{sb,jdbcType=INTEGER},
+            </if>
+            <if test="bz2 != null and bz2 !='' ">
+                bz2=#{bz2,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+
+
+    <update id="updateDistribution">
+        update pxbm
+        set spid=#{spid} ,isfp=1
+        where id in
+        <foreach collection="idList" index="index" item="item"
+                 separator="," open="(" close=")">
+            #{item,jdbcType=VARCHAR}
+        </foreach>
+    </update>
+
+    <update id="clearSpid" parameterType="java.lang.Integer">
+  	update pxbm set spid=null,isfp=0,kh_photo=NULL where spid=#{spid,jdbcType=INTEGER}
+  </update>
+
+    <update id="setIsApply">
+        update pxbm
+        <set>
+            IS_APPLY=#{isApply},
+            <if test="apply!=null and apply!=''">
+                apply=#{apply,jdbcType=VARCHAR} ,
+            </if>
+            reply=#{reply,jdbcType=VARCHAR} ,
+        </set>
+        where id=#{id,jdbcType=VARCHAR}
+    </update>
+
+    <update id="updateJgStatus">
+        update pxbm
+        set op_zt=#{jg,jdbcType=VARCHAR}
+        where id in
+        (select pxbmid from pxbm_spotcheck_member where id in
+        <foreach collection="idlist" index="index" item="item"
+                 separator="," open="(" close=")">
+            #{item,jdbcType=INTEGER}
+        </foreach>
+        )
+    </update>
+
+    <select id="getPxblExcelList" parameterType="com.jianzhi.model.Pxbm" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from pxbm
+        <where>
+            <if test="xm != null and xm!=''">
+                XM=#{xm,jdbcType=VARCHAR} and
+            </if>
+            <if test="sfzhm != null and sfzhm!=''">
+                SFZHM=#{sfzhm,jdbcType=VARCHAR} and
+            </if>
+            <if test="kmm != null and kmm!=''">
+                KMM =#{kmm,jdbcType=VARCHAR} and
+            </if>
+            <if test="dwm != null and dwm!=''">
+                DWM =#{dwm,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+
+    <update id="updatePxbmExcelList" parameterType="com.jianzhi.model.Pxbm">
+        update pxbm set
+        AREA_CODE = #{areaCode,jdbcType=VARCHAR},
+        AREA_NAME = #{areaName,jdbcType=VARCHAR}
+        <where>
+            <if test="xm != null and xm!=''">
+                XM=#{xm,jdbcType=VARCHAR} and
+            </if>
+            <if test="sfzhm != null and sfzhm!=''">
+                SFZHM=#{sfzhm,jdbcType=VARCHAR} and
+            </if>
+            <if test="kmm != null and kmm!=''">
+                KMM = #{kmm,jdbcType=VARCHAR} and
+            </if>
+            <if test="dwm != null and dwm!=''">
+                DWM =#{dwm,jdbcType=VARCHAR}
+            </if>
+        </where>
+  </update>
+
+    <update id="updatePxbmInfo" parameterType="com.jianzhi.model.Pxbm">
+        update pxbm set
+        AREA_CODE = #{areaCode,jdbcType=VARCHAR},
+        AREA_NAME = #{areaName,jdbcType=VARCHAR}
+        where ID=#{id,jdbcType=VARCHAR}
+    </update>
+    <!--<select id="selecctPxbmId" parameterType="com.jianzhi.model.Pxbm" resultMap="BaseResultMap">
+        Select * from  pxbm_spotcheck_member where pxbmid=#{id,jdbcType=VARCHAR}
+    </select>-->
+
+    <update id="updateOpZt" parameterType="com.jianzhi.model.Pxbm">
+        update pxbm set
+        OP_ZT = #{opZt,jdbcType=VARCHAR}
+        <where>
+            <if test="xm != null and xm!=''">
+                XM=#{xm,jdbcType=VARCHAR} and
+            </if>
+            <if test="sfzhm != null and sfzhm!=''">
+                SFZHM=#{sfzhm,jdbcType=VARCHAR} and
+            </if>
+            <if test="kmm != null and kmm!=''">
+                KMM = #{kmm,jdbcType=VARCHAR} and
+            </if>
+            <if test="dwm != null and dwm!=''">
+                DWM =#{dwm,jdbcType=VARCHAR} and
+            </if>
+            <if test="areaName != null and areaName!=''">
+                AREA_NAME = #{areaName,jdbcType=VARCHAR}
+            </if>
+
+        </where>
+    </update>
+
+    <select id="getSelectisCNS" parameterType="com.jianzhi.model.Pxbm" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from pxbm
+        <where>
+
+            <if test="xm != null and xm!=''">
+                XM=#{xm,jdbcType=VARCHAR} and
+            </if>
+            <if test="sfzhm != null and sfzhm!=''">
+                SFZHM=#{sfzhm,jdbcType=VARCHAR} and
+            </if>
+            <if test="kmm != null and kmm!=''">
+                KMM =#{kmm,jdbcType=VARCHAR} and
+            </if>
+            <if test="dwm != null and dwm!=''">
+                DWM =#{dwm,jdbcType=VARCHAR} and
+            </if>
+            <if test="areaName != null and areaName!=''">
+                AREA_NAME = #{areaName,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+
+    <update id="updateIsCNS" parameterType="com.jianzhi.model.Pxbm">
+        update pxbm set
+        IS_CNS = #{isCNS,jdbcType=INTEGER}
+        <where>
+            <if test="xm != null and xm!=''">
+                XM=#{xm,jdbcType=VARCHAR} and
+            </if>
+            <if test="sfzhm != null and sfzhm!=''">
+                SFZHM=#{sfzhm,jdbcType=VARCHAR} and
+            </if>
+            <if test="kmm != null and kmm!=''">
+                KMM =#{kmm,jdbcType=VARCHAR} and
+            </if>
+            <if test="dwm != null and dwm!=''">
+                DWM =#{dwm,jdbcType=VARCHAR} and
+            </if>
+            <if test="areaName != null and areaName!=''">
+                AREA_NAME = #{areaName,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </update>
+
+    <select id="getSelectSpokeMembers" parameterType="com.jianzhi.model.Pxbm" resultMap="BaseResultMap">
+    select * from pxbm where id in (select id from pxbm where AREA_NAME = #{areaName,jdbcType=VARCHAR} and KMM =#{kmm,jdbcType=VARCHAR})
+    and XM=#{xm,jdbcType=VARCHAR} and SFZHM=#{sfzhm,jdbcType=VARCHAR} and KMM =#{kmm,jdbcType=VARCHAR} and DWM =#{dwm,jdbcType=VARCHAR}
+    </select>
+    <update id="updateSpokeMembers" parameterType="com.jianzhi.model.Pxbm">
+        update pxbm set
+        IS_FP = #{isFp,jdbcType=VARCHAR},
+        SPID=#{spid,jdbcType=INTEGER}
+        <where>
+            <if test="xm != null and xm!=''">
+                XM=#{xm,jdbcType=VARCHAR} and
+            </if>
+            <if test="sfzhm != null and sfzhm!=''">
+                SFZHM=#{sfzhm,jdbcType=VARCHAR} and
+            </if>
+            <if test="kmm != null and kmm!=''">
+                KMM =#{kmm,jdbcType=VARCHAR} and
+            </if>
+            <if test="dwm != null and dwm!=''">
+                DWM =#{dwm,jdbcType=VARCHAR} and
+            </if>
+            <if test="areaName != null and areaName!=''">
+                AREA_NAME = #{areaName,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </update>
+
+    <select id="getSelectSXHSpokeMembers" parameterType="com.jianzhi.model.Pxbm" resultMap="BaseResultMap">
+    select * from pxbm where id in (select id from pxbm where KMM =#{kmm,jdbcType=VARCHAR})
+    and XM=#{xm,jdbcType=VARCHAR} and SFZHM=#{sfzhm,jdbcType=VARCHAR} and KMM =#{kmm,jdbcType=VARCHAR} and DWM =#{dwm,jdbcType=VARCHAR}
+    </select>
+
+    <update id="updateSXHSpokeMembers" parameterType="com.jianzhi.model.Pxbm">
+        update pxbm set isfp=1,spid=#{spid}
+        <where>
+            <if test="xm != null and xm!=''">
+                XM=#{xm,jdbcType=VARCHAR} and
+            </if>
+            <if test="sfzhm != null and sfzhm!=''">
+                SFZHM=#{sfzhm,jdbcType=VARCHAR} and
+            </if>
+            <if test="kmm != null and kmm!=''">
+                KMM =#{kmm,jdbcType=VARCHAR} and
+            </if>
+            <if test="dwm != null and dwm!=''">
+                DWM =#{dwm,jdbcType=VARCHAR}
+            </if>
+
+        </where>
+    </update>
+
+    <update id="updateIsFp" parameterType="java.lang.Integer">
+        update pxbm set isfp=1 where spid=#{spid}
+    </update>
+
+    <select id="selectPxbmOpzt" parameterType="com.jianzhi.model.Pxbm" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from pxbm
+        <where>
+            <if test="xm != null and xm!=''">
+                XM=#{xm,jdbcType=VARCHAR} and
+            </if>
+            <if test="sfzhm != null and sfzhm!=''">
+                SFZHM=#{sfzhm,jdbcType=VARCHAR} and
+            </if>
+            <if test="kmm != null and kmm!=''">
+                KMM =#{kmm,jdbcType=VARCHAR} and
+            </if>
+            <if test="dwm != null and dwm!=''">
+                DWM =#{dwm,jdbcType=VARCHAR} and
+            </if>
+            <if test="areaName != null and areaName!=''">
+                AREA_NAME = #{areaName,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+    <update id="uploadImgPxbm" parameterType="com.jianzhi.model.Pxbm">
+        Update pxbm set  kh_photo=#{khphoto,jdbcType=VARCHAR} where ID=#{id,jdbcType=VARCHAR} and spid=#{spid}
+    </update>
+    <select id="selectPxbmInformations" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from pxbm where spid=#{spid}
+    </select>
+
+    <update id="deleteImgurl" parameterType="com.jianzhi.model.Pxbm">
+        Update pxbm set  kh_photo=#{khphoto} where ID=#{id,jdbcType=VARCHAR} and spid=#{spid}
+    </update>
+
+    <update id="updateP_bj">
+        Update pxbm set p_bj=#{p_bj,jdbcType=VARCHAR}
+        where id in
+        (select pxbmid from pxbm_spotcheck_member where id in
+        <foreach collection="idlist" index="index" item="item"
+                 separator="," open="(" close=")">
+            #{item,jdbcType=INTEGER}
+        </foreach>
+        )
+    </update>
+
+    <update id="update_jdfpspid" parameterType="com.jianzhi.model.Pxbm">
+        UPDATE pxbm set is_jd=1 where id=#{id}
+    </update>
+</mapper>

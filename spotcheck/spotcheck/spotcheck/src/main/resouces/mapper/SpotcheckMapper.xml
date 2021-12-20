@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jianzhi.mapper.SpotcheckMapper">
+  <resultMap id="BaseResultMap" type="com.jianzhi.model.Spotcheck">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="area_name" jdbcType="VARCHAR" property="areaName" />
+    <result column="yyyy" jdbcType="VARCHAR" property="yyyy" />
+    <result column="num" jdbcType="VARCHAR" property="num" />
+    <result column="kmm" jdbcType="VARCHAR" property="kmm" />
+    <result column="bfb" jdbcType="INTEGER" property="bfb" />
+    <result column="creattime" jdbcType="TIMESTAMP" property="creattime" />
+    <result column="start" jdbcType="TIMESTAMP" property="start" />
+    <result column="end" jdbcType="TIMESTAMP" property="end" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="isdelete" jdbcType="INTEGER" property="isdelete" />
+    <result column="is_input" jdbcType="INTEGER" property="isInput" />
+    <result column="is_dqenter" jdbcType="INTEGER" property="isDqenter" />
+    <result column="is_xhenter" jdbcType="INTEGER" property="isXhenter" />
+    <result column="is_read" jdbcType="INTEGER" property="isRead" />
+    <result column="xhjd" jdbcType="INTEGER" property="xhjd" />
+    <result column="jdTime" jdbcType="TIMESTAMP" property="jdTime"></result>
+    <result column="xhenterTime" jdbcType="TIMESTAMP" property="xhenterTime"></result>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, area_name, yyyy, num, bfb, creattime, start, end, status, isdelete, kmm, is_input, 
+    is_dqenter, is_xhenter,xhjd,xhenterTime,jdTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pxbm_spotcheck
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from pxbm_spotcheck
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jianzhi.model.Spotcheck">
+    insert into pxbm_spotcheck (id, name, area_name, 
+      yyyy, num, bfb, creattime, 
+      start, end, status, 
+      isdelete,kmm)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{areaName,jdbcType=VARCHAR}, 
+      #{yyyy,jdbcType=VARCHAR}, #{num,jdbcType=VARCHAR}, #{bfb,jdbcType=INTEGER}, #{creattime,jdbcType=TIMESTAMP}, 
+      #{start,jdbcType=TIMESTAMP}, #{end,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, 
+      #{isdelete,jdbcType=INTEGER},#{kmm,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jianzhi.model.Spotcheck" useGeneratedKeys="true" keyProperty="id">
+    insert into pxbm_spotcheck
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="areaName != null">
+        area_name,
+      </if>
+      <if test="yyyy != null">
+        yyyy,
+      </if>
+      <if test="num != null">
+        num,
+      </if>
+      <if test="bfb != null">
+        bfb,
+      </if>
+      <if test="creattime != null">
+        creattime,
+      </if>
+      <if test="start != null">
+        start,
+      </if>
+      <if test="end != null">
+        end,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="isdelete != null">
+        isdelete,
+      </if>
+      <if test="kmm != null">
+        kmm,
+      </if>
+      <if test="xhjd !=null">
+        xhjd,
+      </if>
+      <if test="jdTime != null">
+        jdTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="areaName != null">
+        #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="yyyy != null">
+        #{yyyy,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null">
+        #{num,jdbcType=VARCHAR},
+      </if>
+      <if test="bfb != null">
+        #{bfb,jdbcType=INTEGER},
+      </if>
+      <if test="creattime != null">
+        #{creattime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="start != null">
+        #{start,jdbcType=TIMESTAMP},
+      </if>
+      <if test="end != null">
+        #{end,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="isdelete != null">
+        #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{kmm,jdbcType=VARCHAR},
+      </if>
+      <if test="xhjd !=null">
+        #{xhjd,jdbcType=INTEGER},
+      </if>
+      <if test="jdTime !=null">
+        #{jdTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jianzhi.model.Spotcheck">
+    update pxbm_spotcheck
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="areaName != null">
+        area_name = #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="yyyy != null">
+        yyyy = #{yyyy,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null">
+        num = #{num,jdbcType=VARCHAR},
+      </if>
+      <if test="bfb != null">
+        bfb = #{bfb,jdbcType=INTEGER},
+      </if>
+      <if test="creattime != null">
+        creattime = #{creattime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="start != null">
+        start = #{start,jdbcType=TIMESTAMP},
+      </if>
+      <if test="end != null">
+        end = #{end,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="isdelete != null">
+        isdelete = #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="isInput != null">
+        is_input = #{isInput,jdbcType=INTEGER},
+      </if>
+      <if test="isDqenter != null">
+        is_dqenter = #{isDqenter,jdbcType=INTEGER},
+      </if>
+      <if test="isXhenter != null">
+        is_xhenter = #{isXhenter,jdbcType=INTEGER},
+      </if>
+      <if test="kmm != null">
+        kmm = #{kmm,jdbcType=VARCHAR},
+      </if>
+      <if test="xhjd !=null">
+        xhjd=#{xhjd,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jianzhi.model.Spotcheck">
+    update pxbm_spotcheck
+    set name = #{name,jdbcType=VARCHAR},
+      area_name = #{areaName,jdbcType=VARCHAR},
+      yyyy = #{yyyy,jdbcType=VARCHAR},
+      num = #{num,jdbcType=VARCHAR},
+      bfb = #{bfb,jdbcType=INTEGER},
+      creattime = #{creattime,jdbcType=TIMESTAMP},
+      start = #{start,jdbcType=TIMESTAMP},
+      end = #{end,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      isdelete = #{isdelete,jdbcType=INTEGER},
+       kmm = #{kmm,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectSpotcheckByDetail" parameterType="com.jianzhi.model.Spotcheck" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pxbm_spotcheck
+    <where>
+    	<if test="name != null and name!=''">
+        name like concat('%',#{name,jdbcType=VARCHAR},'%') and
+      </if>
+      <if test="areaName != null and areaName!=''">
+        area_name = #{areaName,jdbcType=VARCHAR} and
+      </if>
+      <if test="yyyy != null and yyyy!=''">
+        yyyy = #{yyyy,jdbcType=VARCHAR} and
+      </if>
+      <if test="num != null and num!=''">
+        num = #{num,jdbcType=VARCHAR} and
+      </if>
+      <if test="bfb != null and bfb!=''">
+        bfb = #{bfb,jdbcType=INTEGER} and
+      </if>
+      <if test="creattime != null">
+        creattime = #{creattime,jdbcType=TIMESTAMP} and
+      </if>
+      <if test="start != null">
+        start &gt;= #{start,jdbcType=TIMESTAMP} and
+      </if>
+      <if test="end != null">
+        end &lt;= #{end,jdbcType=TIMESTAMP} and
+      </if>
+      <if test="status != null">
+      	<if test="status == 0"> start &gt;= #{now} and </if>
+      	<if test="status == 1"> start &lt;= #{now} and end &gt;= #{now} and </if>
+      	<if test="status == 2"> end &lt;= #{now} and </if>
+      </if>
+      <if test="isdelete != null">
+        isdelete = #{isdelete,jdbcType=INTEGER} and
+      </if>
+      <if test="kmm != null and kmm!=''">
+        kmm = #{kmm,jdbcType=VARCHAR} and
+      </if>
+      <if test="isDqenter != null">
+        is_dqenter = #{isDqenter,jdbcType=INTEGER} and
+      </if>
+      <if test="isXhenter != null">
+        is_xhenter = #{isXhenter,jdbcType=INTEGER} and
+      </if>
+       <if test="isRead != null">
+        is_read = #{isRead,jdbcType=INTEGER} and
+      </if>
+      <if test="xhjd != null">
+        xhjd = #{xhjd,jdbcType=INTEGER} and
+      </if>
+      <if test="enterTime !=null">
+        datediff(NOW(), xhenterTime) &lt;=#{enterTime,jdbcType=INTEGER} and
+      </if>
+      isdelete=0
+    </where>
+  </select>
+  
+  <select id="selectSpotcheckListByEntid"  resultMap="BaseResultMap">
+  	select
+    <include refid="Base_Column_List" />
+    from pxbm_spotcheck
+    <where>
+    	id in(
+    		select DISTINCT spid from pxbm_spotcheck_member where dwm=(
+    		select name from enterprise where id=#{entid}
+    		)
+    	)
+    	<if test="yyyy != null and yyyy!=''">
+        and yyyy = #{yyyy,jdbcType=VARCHAR}
+      </if>
+      <if test="num != null and num!=''">
+        and num = #{num,jdbcType=VARCHAR}
+      </if>
+      <if test="kmm != null and kmm!=''">
+        and kmm = #{kmm,jdbcType=VARCHAR}
+      </if>
+
+      <if test="status != null">
+       and 	<if test="status == 0"> start &gt;= #{now}</if>
+      	<!--<if test="status == 1"> start &lt;= #{now} and end &gt;= #{now} and </if>-->
+        <if test="status == 1"> start &lt;= #{now} and end &gt;= #{now}</if>
+      	<if test="status == 2"> end &lt;= #{now} </if>
+
+      </if>
+      <if test="name != null and name!=''">
+        and name  like concat('%',#{name,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="areaName != null and areaName!=''">
+        and area_name like concat('%',#{areaName,jdbcType=VARCHAR},'%')
+      </if>
+      	and isdelete=0
+    </where>
+  </select>
+  
+  
+  <update id="deleteZeroById" parameterType="java.lang.Integer"> 
+  	update pxbm_spotcheck set isdelete=1,xhjd=0 where id=#{id,jdbcType=INTEGER}
+  </update>
+  
+  <update id="modifyDqenter" > 
+  	update pxbm_spotcheck set is_dqenter=1 where id in
+    <foreach collection="idlist" index="index" item="item"
+             separator="," open="(" close=")">
+      #{item,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  
+  <update id="modifyXhEnter" > 
+  	update pxbm_spotcheck set is_xhenter=1,xhenterTime=NOW() where id in
+    <foreach collection="idlist" index="index" item="item"
+             separator="," open="(" close=")">
+      #{item,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  
+  <update id="setIsRead" parameterType="java.lang.Integer"> 
+  	update pxbm_spotcheck set is_read=1 where id=#{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectSpotcheckInfos" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <include refid="Base_Column_List"></include>
+    <where>
+      id=#{id}
+    </where>
+  </select>
+
+
+  <select id="selectXhJdSpotcheckByDetail" parameterType="com.jianzhi.model.Spotcheck" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from pxbm_spotcheck
+    <where>
+      <if test="name != null and name!=''">
+        name like concat('%',#{name,jdbcType=VARCHAR},'%') and
+      </if>
+      <if test="areaName != null and areaName!=''">
+        area_name = #{areaName,jdbcType=VARCHAR} and
+      </if>
+      <if test="yyyy != null and yyyy!=''">
+        yyyy = #{yyyy,jdbcType=VARCHAR} and
+      </if>
+      <if test="num != null and num!=''">
+        num = #{num,jdbcType=VARCHAR} and
+      </if>
+      <if test="bfb != null and bfb!=''">
+        bfb = #{bfb,jdbcType=INTEGER} and
+      </if>
+      <if test="creattime != null">
+        creattime = #{creattime,jdbcType=TIMESTAMP} and
+      </if>
+      <if test="start != null">
+        start &gt;= #{start,jdbcType=TIMESTAMP} and
+      </if>
+      <if test="end != null">
+        end &lt;= #{end,jdbcType=TIMESTAMP} and
+      </if>
+      <if test="status != null">
+        <if test="status == 0"> start &gt;= #{now} and </if>
+        <if test="status == 1"> start &lt;= #{now} and end &gt;= #{now} and </if>
+        <if test="status == 2"> end &lt;= #{now} and </if>
+      </if>
+      <if test="isdelete != null">
+        isdelete = #{isdelete,jdbcType=INTEGER} and
+      </if>
+      <if test="kmm != null and kmm!=''">
+        kmm = #{kmm,jdbcType=VARCHAR} and
+      </if>
+      <if test="isDqenter != null">
+        is_dqenter = #{isDqenter,jdbcType=INTEGER} and
+      </if>
+      <if test="isXhenter != null">
+        is_xhenter = #{isXhenter,jdbcType=INTEGER} and
+      </if>
+      <if test="isRead != null">
+        is_read = #{isRead,jdbcType=INTEGER} and
+      </if>
+      <if test="xhjd != null">
+        xhjd = #{xhjd,jdbcType=INTEGER} and
+      </if>
+      isdelete=0 and xhjd!=0
+    </where>
+  </select>
+
+  <update id="updateSpotcheckXhjd" parameterType="com.jianzhi.model.SpotcheckMember">
+     UPDATE pxbm_spotcheck set xhjd=#{xhjd,jdbcType=INTEGER} where id=#{spid,jdbcType=INTEGER}
+  </update>
+
+  <update id="deleteXhspotecheck" parameterType="java.lang.Integer">
+   UPDATE pxbm_spotcheck set xhjd=0 where id=#{spid}
+  </update>
+
+  <insert id="insertSpid" parameterType="java.lang.Integer">
+   insert into xhjd_spid values (default,#{param1},#{param2})
+  </insert>
+
+ <select id="getselectSpid" parameterType="java.lang.Integer" resultType="int">
+   select sp_id from xhjd_spid where jdspid=#{param1}
+ </select>
+</mapper>

@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="spotcheck (1):war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>spotcheck (1)</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="spotcheck-0.0.1-SNAPSHOT.war">
+      <element id="artifact" artifact-name="spotcheck (1):war exploded" />
+    </root>
+  </artifact>
+</component>

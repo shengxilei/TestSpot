@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jianzhi.mapper.JobMapper">
+  <resultMap id="BaseResultMap" type="com.jianzhi.model.Job">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="spid" jdbcType="INTEGER" property="spid" />
+    <result column="startdate" jdbcType="TIMESTAMP" property="startdate" />
+    <result column="is_used" jdbcType="INTEGER" property="isUsed" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, spid, startdate, is_used
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from job
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from job
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jianzhi.model.Job">
+    insert into job (id, spid, startdate, 
+      is_used)
+    values (#{id,jdbcType=INTEGER}, #{spid,jdbcType=INTEGER}, #{startdate,jdbcType=TIMESTAMP}, 
+      #{isUsed,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jianzhi.model.Job">
+    insert into job
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="spid != null">
+        spid,
+      </if>
+      <if test="startdate != null">
+        startdate,
+      </if>
+      <if test="isUsed != null">
+        is_used,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="spid != null">
+        #{spid,jdbcType=INTEGER},
+      </if>
+      <if test="startdate != null">
+        #{startdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isUsed != null">
+        #{isUsed,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jianzhi.model.Job">
+    update job
+    <set>
+      <if test="spid != null">
+        spid = #{spid,jdbcType=INTEGER},
+      </if>
+      <if test="startdate != null">
+        startdate = #{startdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isUsed != null">
+        is_used = #{isUsed,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jianzhi.model.Job">
+    update job
+    set spid = #{spid,jdbcType=INTEGER},
+      startdate = #{startdate,jdbcType=TIMESTAMP},
+      is_used = #{isUsed,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="getJobList" resultMap="BaseResultMap">
+  	select 
+  	<include refid="Base_Column_List" />
+    from job
+    where startdate>now() and  is_used=0
+  </select>
+  <update id="updateJobUsed" parameterType="java.lang.Integer">
+  	update job set is_used=1 where spid=#{spid,jdbcType=INTEGER}
+  </update>
+  <update id="updateStratDate" parameterType="com.jianzhi.model.Job">
+  	update job
+    set 
+      startdate = #{startdate,jdbcType=TIMESTAMP}
+    where spid = #{spid,jdbcType=INTEGER}
+  </update>
+  <delete id="deleteJobBySpid" parameterType="java.lang.Integer">
+    delete from job
+    where spid = #{spid,jdbcType=INTEGER}
+  </delete>
+</mapper>

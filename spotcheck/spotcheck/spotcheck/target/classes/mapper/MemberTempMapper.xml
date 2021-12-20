@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jianzhi.mapper.MemberTempMapper">
+  <resultMap id="BaseResultMap" type="com.jianzhi.model.MemberTemp">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="xh" jdbcType="INTEGER" property="xh" />
+    <result column="dwm" jdbcType="VARCHAR" property="dwm" />
+    <result column="xm" jdbcType="VARCHAR" property="xm" />
+    <result column="xb" jdbcType="INTEGER" property="xb" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="jobtitle" jdbcType="VARCHAR" property="jobtitle" />
+    <result column="sfzhm" jdbcType="VARCHAR" property="sfzhm" />
+    <result column="kmm" jdbcType="VARCHAR" property="kmm" />
+    <result column="checkstatus" jdbcType="INTEGER" property="checkstatus" />
+    <result column="jg" jdbcType="INTEGER" property="jg" />
+    <result column="spid" jdbcType="INTEGER" property="spid" />
+    <result column="bz" jdbcType="VARCHAR" property="bz" />
+    <result column="err" jdbcType="VARCHAR" property="err" />
+    <result column="IS_CNS" jdbcType="INTEGER" property="isCNS" />
+    <result column="IS_SB" jdbcType="INTEGER" property="isSB" />
+    <result column="pxbmid" jdbcType="VARCHAR" property="pxbmid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, xh, dwm, xm, xb, age, jobtitle, sfzhm, kmm, checkstatus, jg, spid, bz, err, is_cns, is_sb 
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pxbm_spotcheck_member_temp
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from pxbm_spotcheck_member_temp
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jianzhi.model.MemberTemp">
+    insert into pxbm_spotcheck_member_temp (id, xh, dwm, 
+      xm, xb, age, jobtitle, 
+      sfzhm, kmm, checkstatus, 
+      jg, spid, bz, err
+      )
+    values (#{id,jdbcType=INTEGER}, #{xh,jdbcType=INTEGER}, #{dwm,jdbcType=VARCHAR}, 
+      #{xm,jdbcType=VARCHAR}, #{xb,jdbcType=INTEGER}, #{age,jdbcType=INTEGER}, #{jobtitle,jdbcType=VARCHAR}, 
+      #{sfzhm,jdbcType=VARCHAR}, #{kmm,jdbcType=VARCHAR}, #{checkstatus,jdbcType=INTEGER}, 
+      #{jg,jdbcType=INTEGER}, #{spid,jdbcType=INTEGER}, #{bz,jdbcType=VARCHAR}, #{err,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jianzhi.model.MemberTemp">
+    insert into pxbm_spotcheck_member_temp
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="xh != null">
+        xh,
+      </if>
+      <if test="dwm != null">
+        dwm,
+      </if>
+      <if test="xm != null">
+        xm,
+      </if>
+      <if test="xb != null">
+        xb,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="jobtitle != null">
+        jobtitle,
+      </if>
+      <if test="sfzhm != null">
+        sfzhm,
+      </if>
+      <if test="kmm != null">
+        kmm,
+      </if>
+      <if test="checkstatus != null">
+        checkstatus,
+      </if>
+      <if test="jg != null">
+        jg,
+      </if>
+      <if test="spid != null">
+        spid,
+      </if>
+      <if test="bz != null">
+        bz,
+      </if>
+      <if test="err != null">
+        err,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="xh != null">
+        #{xh,jdbcType=INTEGER},
+      </if>
+      <if test="dwm != null">
+        #{dwm,jdbcType=VARCHAR},
+      </if>
+      <if test="xm != null">
+        #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="xb != null">
+        #{xb,jdbcType=INTEGER},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="jobtitle != null">
+        #{jobtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzhm != null">
+        #{sfzhm,jdbcType=VARCHAR},
+      </if>
+      <if test="kmm != null">
+        #{kmm,jdbcType=VARCHAR},
+      </if>
+      <if test="checkstatus != null">
+        #{checkstatus,jdbcType=INTEGER},
+      </if>
+      <if test="jg != null">
+        #{jg,jdbcType=INTEGER},
+      </if>
+      <if test="spid != null">
+        #{spid,jdbcType=INTEGER},
+      </if>
+      <if test="bz != null">
+        #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="err != null">
+        #{err,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jianzhi.model.MemberTemp">
+    update pxbm_spotcheck_member_temp
+    <set>
+      <if test="xh != null">
+        xh = #{xh,jdbcType=INTEGER},
+      </if>
+      <if test="dwm != null">
+        dwm = #{dwm,jdbcType=VARCHAR},
+      </if>
+      <if test="xm != null">
+        xm = #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="xb != null">
+        xb = #{xb,jdbcType=INTEGER},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="jobtitle != null">
+        jobtitle = #{jobtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzhm != null">
+        sfzhm = #{sfzhm,jdbcType=VARCHAR},
+      </if>
+      <if test="kmm != null">
+        kmm = #{kmm,jdbcType=VARCHAR},
+      </if>
+      <if test="checkstatus != null">
+        checkstatus = #{checkstatus,jdbcType=INTEGER},
+      </if>
+      <if test="jg != null">
+        jg = #{jg,jdbcType=INTEGER},
+      </if>
+      <if test="spid != null">
+        spid = #{spid,jdbcType=INTEGER},
+      </if>
+      <if test="bz != null">
+        bz = #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="err != null">
+        err = #{err,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jianzhi.model.MemberTemp">
+    update pxbm_spotcheck_member_temp
+    set xh = #{xh,jdbcType=INTEGER},
+      dwm = #{dwm,jdbcType=VARCHAR},
+      xm = #{xm,jdbcType=VARCHAR},
+      xb = #{xb,jdbcType=INTEGER},
+      age = #{age,jdbcType=INTEGER},
+      jobtitle = #{jobtitle,jdbcType=VARCHAR},
+      sfzhm = #{sfzhm,jdbcType=VARCHAR},
+      kmm = #{kmm,jdbcType=VARCHAR},
+      checkstatus = #{checkstatus,jdbcType=INTEGER},
+      jg = #{jg,jdbcType=INTEGER},
+      spid = #{spid,jdbcType=INTEGER},
+      bz = #{bz,jdbcType=VARCHAR},
+      err = #{err,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  <!-- 用于批量插入到临时表  -->
+  <insert id="insertMemberTempList" parameterType="java.util.List">
+    insert into pxbm_spotcheck_member_temp (
+    	dwm,xm, xb,sfzhm, kmm, spid, is_cns ,is_sb, pxbmid ,jg 
+      )
+    values 
+     <foreach collection="memberTempList" item="it" separator=",">
+       (#{it.dwm},#{it.xm},#{it.xb}, 
+       #{it.sfzhm},#{it.kmm},#{it.spid}, 
+       #{it.isCNS},#{it.isSB},#{it.pxbmid},#{it.jg})
+   </foreach>
+  </insert>
+  
+  <insert id="inputMemberTempList" parameterType="java.util.List">
+    insert into pxbm_spotcheck_member_temp (
+    	xh,dwm,xm, xb,sfzhm, kmm, spid, is_cns ,is_sb, pxbmid, is_zz 
+      )
+    values 
+     <foreach collection="memberTempList" item="it" separator=",">
+       (#{xh},#{it.dwm},#{it.xm},#{it.xb}, 
+       #{it.sfzhm},#{it.kmm},#{it.spid}, 
+       #{isCNS},#{isSB},#{pxbmid},#{isZz})
+   </foreach>
+  </insert>
+  
+  
+  <select id="selectMsemberTempByDetail"  resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from pxbm_spotcheck_member_temp
+    <where>
+      <if test="dwm != null and dwm!=''">
+        dwm like concat('%',#{dwm,jdbcType=VARCHAR},'%') and
+      </if>
+      <if test="xm != null and xm!=''">
+        xm like concat('%',#{xm,jdbcType=VARCHAR},'%') and
+      </if>
+      <if test="sfzhm != null and sfzhm!=''">
+        sfzhm like concat('%',#{sfzhm,jdbcType=VARCHAR},'%') and
+      </if>
+      <if test="isCNS != null">
+        is_cns = #{isCNS,jdbcType=INTEGER} and
+      </if>
+      <if test="isSB != null">
+        is_sb = #{isSB,jdbcType=INTEGER} and
+      </if>
+      <if test="spid != null">
+        spid = #{spid,jdbcType=INTEGER} and
+      </if>
+      <if test="jg != null">
+        jg = #{jg,jdbcType=INTEGER} and
+      </if>
+      1=1
+    </where>
+  </select>
+  
+  
+  <delete id="deleteTempByIdList">
+  	delete from  pxbm_spotcheck_member_temp 
+    where id in
+    <foreach collection="idList" index="index" item="item"
+             separator="," open="(" close=")">
+      #{item,jdbcType=INTEGER}
+    </foreach>
+  </delete>
+
+  <insert id="insertSpokenMembers" parameterType="com.jianzhi.model.MemberTemp">
+    insert into pxbm_spotcheck_member_temp (dwm,xm, xb,sfzhm, kmm, spid, is_cns ,is_sb, pxbmid ,jg) values
+    (#{dwm,jdbcType=VARCHAR}, #{xm,jdbcType=VARCHAR}, #{xb,jdbcType=INTEGER},#{sfzhm,jdbcType=VARCHAR},#{kmm,jdbcType=VARCHAR},
+    #{spid,jdbcType=INTEGER},#{isCNS,jdbcType=INTEGER},#{isSB,jdbcType=INTEGER},#{pxbmid,jdbcType=INTEGER},#{jg,jdbcType=INTEGER}
+      )
+  </insert>
+</mapper>

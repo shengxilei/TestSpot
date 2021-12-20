@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jianzhi.mapper.QualificationsDetailMapper">
+  <resultMap id="BaseResultMap" type="com.jianzhi.model.QualificationsDetail">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="dwm" jdbcType="VARCHAR" property="dwm" />
+    <result column="zs_bh" jdbcType="VARCHAR" property="zsBh" />
+    <result column="zz_kmm" jdbcType="VARCHAR" property="zzKmm" />
+    <result column="zz_code" jdbcType="VARCHAR" property="zzCode" />
+    <result column="qualid" jdbcType="VARCHAR" property="qualid" />
+    <result column="dwid" jdbcType="VARCHAR" property="dwid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, dwm, zs_bh, zz_kmm, zz_code, qualid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from en_qualifications_detail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from en_qualifications_detail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jianzhi.model.QualificationsDetail">
+    insert into en_qualifications_detail (id, dwm, zs_bh, 
+      zz_kmm, zz_code, qualid
+      )
+    values (#{id,jdbcType=INTEGER}, #{dwm,jdbcType=VARCHAR}, #{zsBh,jdbcType=VARCHAR}, 
+      #{zzKmm,jdbcType=VARCHAR}, #{zzCode,jdbcType=VARCHAR}, #{qualid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jianzhi.model.QualificationsDetail">
+    insert into en_qualifications_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="dwm != null">
+        dwm,
+      </if>
+      <if test="zsBh != null">
+        zs_bh,
+      </if>
+      <if test="zzKmm != null">
+        zz_kmm,
+      </if>
+      <if test="zzCode != null">
+        zz_code,
+      </if>
+      <if test="qualid != null">
+        qualid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="dwm != null">
+        #{dwm,jdbcType=VARCHAR},
+      </if>
+      <if test="zsBh != null">
+        #{zsBh,jdbcType=VARCHAR},
+      </if>
+      <if test="zzKmm != null">
+        #{zzKmm,jdbcType=VARCHAR},
+      </if>
+      <if test="zzCode != null">
+        #{zzCode,jdbcType=VARCHAR},
+      </if>
+      <if test="qualid != null">
+        #{qualid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jianzhi.model.QualificationsDetail">
+    update en_qualifications_detail
+    <set>
+      <if test="dwm != null">
+        dwm = #{dwm,jdbcType=VARCHAR},
+      </if>
+      <if test="zsBh != null">
+        zs_bh = #{zsBh,jdbcType=VARCHAR},
+      </if>
+      <if test="zzKmm != null">
+        zz_kmm = #{zzKmm,jdbcType=VARCHAR},
+      </if>
+      <if test="zzCode != null">
+        zz_code = #{zzCode,jdbcType=VARCHAR},
+      </if>
+      <if test="qualid != null">
+        qualid = #{qualid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jianzhi.model.QualificationsDetail">
+    update en_qualifications_detail
+    set dwm = #{dwm,jdbcType=VARCHAR},
+      zs_bh = #{zsBh,jdbcType=VARCHAR},
+      zz_kmm = #{zzKmm,jdbcType=VARCHAR},
+      zz_code = #{zzCode,jdbcType=VARCHAR},
+      qualid = #{qualid,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectDetailBydwid" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from en_qualifications_detail
+    where dwid = #{dwid,jdbcType=VARCHAR}
+  </select>
+  
+  <delete id="deleteByQuaid" parameterType="java.lang.String">
+    delete from en_qualifications_detail
+    where qualid = #{qualid,jdbcType=VARCHAR}
+  </delete>
+  
+</mapper>

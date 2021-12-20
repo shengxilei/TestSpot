@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jianzhi.mapper.QualificationsMapper">
+  <resultMap id="BaseResultMap" type="com.jianzhi.model.Qualifications">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="dwm" jdbcType="VARCHAR" property="dwm" />
+    <result column="zs_bh" jdbcType="VARCHAR" property="zsBh" />
+    <result column="fzdate_start" jdbcType="DATE" property="fzdateStart" />
+    <result column="fzdate_end" jdbcType="DATE" property="fzdateEnd" />
+    <result column="ZZCONTENT" jdbcType="VARCHAR" property="zzcontent" />
+    <result column="dwid" jdbcType="VARCHAR" property="dwid" />
+  </resultMap>
+  
+  <resultMap type="com.jianzhi.model.QualificationsEx" id="QualificationsMap" extends="BaseResultMap">
+  	<collection  property="detailList" javaType="ArrayList" select="getDetail" ofType="com.jianzhi.model.QualificationsDetail" column="id">
+  	</collection>
+  </resultMap>
+  <select id="getDetail"  resultMap="com.jianzhi.mapper.QualificationsDetailMapper.BaseResultMap" >
+  	select * from en_qualifications_detail where qualid = #{id}
+  </select>
+  
+  <sql id="Base_Column_List">
+    id, dwm, zs_bh, fzdate_start, fzdate_end, ZZCONTENT
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from en_qualifications
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from en_qualifications
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.jianzhi.model.Qualifications">
+        <selectKey resultType="java.lang.String" order="BEFORE" keyProperty="id"> 
+        select upper(replace(uuid(),'-',''))
+        </selectKey>
+    insert into en_qualifications (id, dwm, zs_bh, 
+      fzdate_start, fzdate_end, ZZCONTENT, dwid 
+      )
+    values (#{id,jdbcType=VARCHAR}, #{dwm,jdbcType=VARCHAR}, #{zsBh,jdbcType=VARCHAR}, 
+      #{fzdateStart,jdbcType=DATE}, #{fzdateEnd,jdbcType=DATE}, #{zzcontent,jdbcType=VARCHAR}, 
+      #{dwid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jianzhi.model.Qualifications">
+    insert into en_qualifications
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="dwm != null">
+        dwm,
+      </if>
+      <if test="zsBh != null">
+        zs_bh,
+      </if>
+      <if test="fzdateStart != null">
+        fzdate_start,
+      </if>
+      <if test="fzdateEnd != null">
+        fzdate_end,
+      </if>
+      <if test="zzcontent != null">
+        ZZCONTENT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="dwm != null">
+        #{dwm,jdbcType=VARCHAR},
+      </if>
+      <if test="zsBh != null">
+        #{zsBh,jdbcType=VARCHAR},
+      </if>
+      <if test="fzdateStart != null">
+        #{fzdateStart,jdbcType=DATE},
+      </if>
+      <if test="fzdateEnd != null">
+        #{fzdateEnd,jdbcType=DATE},
+      </if>
+      <if test="zzcontent != null">
+        #{zzcontent,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jianzhi.model.Qualifications">
+    update en_qualifications
+    <set>
+      <if test="zsBh != null">
+        zs_bh = #{zsBh,jdbcType=VARCHAR},
+      </if>
+      <if test="fzdateStart != null">
+        fzdate_start = #{fzdateStart,jdbcType=DATE},
+      </if>
+      <if test="fzdateEnd != null">
+        fzdate_end = #{fzdateEnd,jdbcType=DATE},
+      </if>
+      <if test="zzcontent != null">
+        ZZCONTENT = #{zzcontent,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jianzhi.model.Qualifications">
+    update en_qualifications
+    set dwm = #{dwm,jdbcType=VARCHAR},
+      zs_bh = #{zsBh,jdbcType=VARCHAR},
+      fzdate_start = #{fzdateStart,jdbcType=DATE},
+      fzdate_end = #{fzdateEnd,jdbcType=DATE},
+      ZZCONTENT = #{zzcontent,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="selectQualificationsBydwm" resultMap="QualificationsMap">
+  	SELECT *
+		FROM en_qualifications t
+		where t.dwm = #{dwm,jdbcType=VARCHAR} limit 1
+  </select>
+  
+  <select id="selectQualificationsBydwid" resultMap="QualificationsMap">
+  	SELECT *
+		FROM en_qualifications t
+		where t.dwid = #{dwid,jdbcType=VARCHAR} limit 1
+  </select>
+  
+  
+  
+  
+  <select id="selectQualificationsByMh" resultMap="QualificationsMap" parameterType="com.jianzhi.model.Qualifications">
+  	SELECT * from
+		 en_qualifications t 
+		<where>
+			<if test="mhdwm!=null and mhdwm!=''">
+				and t.dwm like concat('%',#{mhdwm,jdbcType=VARCHAR},'%') 
+			</if>
+			<if test="zsBh!=null and zsBh!=''">
+				and t.zs_bh like concat('%',#{zsBh,jdbcType=VARCHAR},'%') 
+			</if>
+			<if test="zzcontent!=null and zzcontent!=''">
+				and t.zzcontent like concat('%',#{zzcontent,jdbcType=VARCHAR},'%')
+			</if>
+			<if test="areaName!=null and areaName!=''">
+				and dwm in (select name from enterprise where area_name=#{areaName,jdbcType=VARCHAR})
+		 	</if>
+		</where>
+		
+  </select>
+</mapper>

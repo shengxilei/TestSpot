@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jianzhi.mapper.EnterpriseMapper">
+  <resultMap id="BaseResultMap" type="com.jianzhi.model.Enterprise">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="pxzh" jdbcType="VARCHAR" property="pxzh" />
+    <result column="pxmm" jdbcType="VARCHAR" property="pxmm" />
+    <result column="isdelete" jdbcType="INTEGER" property="isdelete" />
+    <result column="role" jdbcType="VARCHAR" property="role" />
+    <result column="area_name" jdbcType="VARCHAR" property="areaName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, pxzh, pxmm, isdelete, role ,area_name 
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from enterprise
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from enterprise
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.jianzhi.model.Enterprise">
+    insert into enterprise (id, name, pxzh, 
+      pxmm, isdelete, role
+      )
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{pxzh,jdbcType=VARCHAR}, 
+      #{pxmm,jdbcType=VARCHAR}, #{isdelete,jdbcType=INTEGER}, #{role,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jianzhi.model.Enterprise">
+    insert into enterprise
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="pxzh != null">
+        pxzh,
+      </if>
+      <if test="pxmm != null">
+        pxmm,
+      </if>
+      <if test="isdelete != null">
+        isdelete,
+      </if>
+      <if test="role != null">
+        role,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="pxzh != null">
+        #{pxzh,jdbcType=VARCHAR},
+      </if>
+      <if test="pxmm != null">
+        #{pxmm,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelete != null">
+        #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="role != null">
+        #{role,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jianzhi.model.Enterprise">
+    update enterprise
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="pxzh != null">
+        pxzh = #{pxzh,jdbcType=VARCHAR},
+      </if>
+      <if test="pxmm != null">
+        pxmm = #{pxmm,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelete != null">
+        isdelete = #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="role != null">
+        role = #{role,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jianzhi.model.Enterprise">
+    update enterprise
+    set name = #{name,jdbcType=VARCHAR},
+      pxzh = #{pxzh,jdbcType=VARCHAR},
+      pxmm = #{pxmm,jdbcType=VARCHAR},
+      isdelete = #{isdelete,jdbcType=INTEGER},
+      role = #{role,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 根据账号密码查询 -->
+  <select id="selectByZhAndMM"  resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from enterprise
+    where pxzh = #{zh,jdbcType=VARCHAR} and pxmm = #{mm,jdbcType=VARCHAR}
+  </select>
+  
+  
+  <update id="updatePassword">
+    update enterprise
+    set 
+      pxmm = #{newpassword,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+</mapper>
